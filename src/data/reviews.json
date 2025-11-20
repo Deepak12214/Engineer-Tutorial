@@ -1,0 +1,22 @@
+{
+  "reviews": [
+    {
+      "name": "Amit Sharma",
+      "role": "Software Engineer @ Startup",
+      "text": "The best interview preparation platform I’ve used. Clean notes and very helpful examples.",
+      "imageUrl": "https://randomuser.me/api/portraits/men/32.jpg"
+    },
+    {
+      "name": "Priya Mehta",
+      "role": "Frontend Developer",
+      "text": "Loved the detailed explanations. System design became so easy to understand.",
+      "imageUrl": "https://randomuser.me/api/portraits/women/44.jpg"
+    },
+    {
+      "name": "Rahul Verma",
+      "role": "Intern @ MNC",
+      "text": "This website made me confident for my technical rounds. Highly recommended.",
+      "imageUrl": "https://randomuser.me/api/portraits/men/12.jpg"
+    }
+  ]
+}

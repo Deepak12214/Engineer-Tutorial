@@ -1,0 +1,39 @@
+{
+  "site": {
+    "title": "Interview Master",
+    "tagline": "Master System Design & Algorithms",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhW3OT_ik4vTyDmuS146qBcBH09uxRURIfYg&s",
+    "headerLinks": [
+      {
+        "label": "Learn",
+        "type": "dropdown",
+        "items": [
+          {
+            "label": "System Design",
+            "courseId": "system-design",
+            "description": "Learn scalable system architecture"
+          },
+          {
+            "label": "Algorithms",
+            "courseId": "algorithms",
+            "description": "Master DSA concepts"
+          }
+        ]
+      },
+      {
+        "label": "About",
+        "type": "link",
+        "path": "/about"
+      },
+      {
+        "label": "Pricing",
+        "type": "link",
+        "path": "/pricing"
+      }
+    ],
+    "cta": {
+      "primary": "Get Started",
+      "secondary": "See Demo"
+    }
+  }
+}

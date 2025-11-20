@@ -1,0 +1,16 @@
+{
+  "faqs": [
+    {
+      "question": "How do I start learning?",
+      "answer": "Just pick any course from the homepage and start reading. Every topic is structured in a step-by-step format."
+    },
+    {
+      "question": "Are the mock interviews free?",
+      "answer": "Yes, you can try a limited number of mock interviews for free. Premium options provide expert feedback."
+    },
+    {
+      "question": "Is this platform beginner-friendly?",
+      "answer": "Absolutely. All content is written to be understood easily, even if you're just starting."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "system-design",
+    "title": "System Design",
+    "description": "All core system design topics and practice problems.",
+    "banner": "https://source.unsplash.com/random/1600x400?system,architecture"
+  },
+  {
+    "id": "dsa",
+    "title": "Data Structures & Algorithms",
+    "description": "Classic DSA topics and practice questions.",
+    "banner": "https://source.unsplash.com/random/1600x400?algorithm,code"
+  }
+]

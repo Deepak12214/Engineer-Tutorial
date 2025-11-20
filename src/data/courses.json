@@ -1,0 +1,22 @@
+{
+  "courses": [
+    {
+      "id": "system-design",
+      "title": "System Design",
+      "description": "Learn to design scalable systems from scratch",
+      "icon": "🏗️",
+      "defaultRoute": "/learn/system-design/in-a-hurry/introduction",
+      "totalSections": 1,
+      "totalTopics": 6
+    },
+    {
+      "id": "algorithms",
+      "title": "Algorithms & Data Structures",
+      "description": "Master algorithms and problem solving",
+      "icon": "🧮",
+      "defaultRoute": "/learn/algorithms/basics/introduction",
+      "totalSections": 1,
+      "totalTopics": 4
+    }
+  ]
+}

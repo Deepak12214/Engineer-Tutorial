@@ -1,0 +1,22 @@
+{
+  "sections": [
+    {
+      "title": "Master Data Structures & Algorithms",
+      "description": "Learn every important DSA concept with structured explanations and illustrations.",
+      "imageUrl": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200",
+      "reverse": false
+    },
+    {
+      "title": "Ace System Design Interviews",
+      "description": "Get highly visual, beginner-friendly, and interview-focused system design notes.",
+      "imageUrl": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200",
+      "reverse": true
+    },
+    {
+      "title": "Mock Interviews With Experts",
+      "description": "Practice realistic interviews to improve confidence and crack your dream job.",
+      "imageUrl": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200",
+      "reverse": false
+    }
+  ]
+}

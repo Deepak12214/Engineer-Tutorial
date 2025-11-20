@@ -1,0 +1,17 @@
+{
+  "footer": {
+    "brand": "Interview Master",
+    "description": "Your all-in-one learning hub for DSA, System Design, and Interview Prep.",
+    "links": [
+      { "label": "Home", "url": "/" },
+      { "label": "Courses", "url": "/courses" },
+      { "label": "About", "url": "/about" },
+      { "label": "Contact", "url": "/contact" }
+    ],
+    "social": [
+      { "label": "Twitter", "url": "#" },
+      { "label": "LinkedIn", "url": "#" },
+      { "label": "GitHub", "url": "#" }
+    ]
+  }
+}
