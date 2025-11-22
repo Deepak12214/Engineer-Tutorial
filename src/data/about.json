@@ -1,0 +1,151 @@
+{
+  "about": {
+    "title": "About Us",
+    "subtitle": "A modern learning platform built for students preparing for Software Engineering Interviews.",
+    "image": "https://source.unsplash.com/random/1200x600?team,workspace,technology",
+    "sections": [
+      {
+        "id": "our-mission",
+        "title": "Our Mission",
+        "contentBlocks": [
+          {
+            "type": "heading",
+            "text": "Why We Exist"
+          },
+          {
+            "type": "text",
+            "text": "We created this platform to provide the most structured, realistic, and industry-level preparation experience for students who dream of cracking top-tier tech interviews. Unlike scattered YouTube playlists or incomplete notes, our resources are research-backed, practical, and aligned with real company interviews."
+          },
+          {
+            "type": "image",
+            "src": "https://source.unsplash.com/random/1000x500?mission,focus",
+            "alt": "Mission"
+          },
+          {
+            "type": "list",
+            "items": [
+              "Make high-quality tech education accessible to everyone",
+              "Provide interview-ready resources that match FAANG standards",
+              "Teach real System Design, DSA, LLD, and Computer Science fundamentals",
+              "Remove the confusion of 'what to study and how'"
+            ]
+          }
+        ]
+      },
+
+      {
+        "id": "what-we-offer",
+        "title": "What We Offer",
+        "contentBlocks": [
+          {
+            "type": "heading",
+            "text": "End-to-End Interview Preparation"
+          },
+          {
+            "type": "text",
+            "text": "Our content is designed after studying InterviewBit, GeeksforGeeks, and HelloInterviews — picking the best parts of all three platforms and refining them. We focus on clarity, structured sequencing, and deep explanations without overwhelming the learner."
+          },
+          {
+            "type": "image",
+            "src": "https://source.unsplash.com/random/1000x500?education,learning",
+            "alt": "Learning"
+          },
+          {
+            "type": "list",
+            "items": [
+              "Complete System Design Roadmaps",
+              "Detailed DSA Notes and Problems",
+              "Industry-Level LLD Case Studies",
+              "Mock Interview Framework",
+              "Blog-Style Deep Dives on Architecture and Engineering"
+            ]
+          }
+        ]
+      },
+
+      {
+        "id": "our-approach",
+        "title": "Our Approach",
+        "contentBlocks": [
+          {
+            "type": "heading",
+            "text": "How We Build Content"
+          },
+          {
+            "type": "text",
+            "text": "Every topic you see on our website goes through a complete pipeline — research, analysis, real-world validation, and then a structured rewrite. This ensures our content is accurate, easy to understand, and interview-ready."
+          },
+          {
+            "type": "image",
+            "src": "https://source.unsplash.com/random/1000x500?system,process",
+            "alt": "Content Creation Process"
+          },
+          {
+            "type": "list",
+            "items": [
+              "We study real architecture of apps like Instagram, Uber, Netflix",
+              "We validate every concept with engineering blogs & documentation",
+              "We write in small, understandable blocks",
+              "We prioritize visuals, diagrams, and easy breakdowns",
+              "We constantly update content based on new tech trends"
+            ]
+          }
+        ]
+      },
+
+      {
+        "id": "who-we-are",
+        "title": "Who We Are",
+        "contentBlocks": [
+          {
+            "type": "heading",
+            "text": "The People Behind the Platform"
+          },
+          {
+            "type": "text",
+            "text": "We are a small team of developers, educators, and designers who experienced the chaos of interview preparation firsthand. Our years working with system design, backend engineering, and product development shaped the platform you see today."
+          },
+          {
+            "type": "image",
+            "src": "https://source.unsplash.com/random/1000x500?team,developers",
+            "alt": "Team"
+          },
+          {
+            "type": "quote",
+            "text": "We believe great opportunities shouldn't depend on expensive coaching — they should depend on great guidance."
+          }
+        ]
+      },
+
+      {
+        "id": "future-vision",
+        "title": "Our Future Vision",
+        "contentBlocks": [
+          {
+            "type": "heading",
+            "text": "Where We Are Headed"
+          },
+          {
+            "type": "text",
+            "text": "We are constantly evolving. In the coming months, we plan to introduce more advanced courses, mock interview experiences, and AI-driven personalization so every student gets a custom roadmap."
+          },
+          {
+            "type": "image",
+            "src": "https://source.unsplash.com/random/1000x500?future,technology",
+            "alt": "Future Vision"
+          },
+          {
+            "type": "list",
+            "items": [
+              "AI-based personalized learning paths",
+              "Video-based system design explainers",
+              "Full interview simulation platform",
+              "More real-world case studies",
+              "User profiles with progress tracking"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

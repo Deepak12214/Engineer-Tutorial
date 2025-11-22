@@ -1,7 +1,11 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import LandingPage from './pages/LandingPage';
-import ReadingPage from './pages/ReadingPage';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import LandingPage from "./pages/LandingPage";
+import ReadingPage from "./pages/ReadingPage";
+import BlogDetails from "./pages/BlogDetails";
+import BlogList from "./pages/BlogList";
+import AboutPage from "./pages/AboutPage";
+
 
 function App() {
   return (
@@ -10,7 +14,13 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/learn/:courseId/:sectionId/:topicId" element={<ReadingPage />} />
+          <Route
+            path="/learn/:courseId/:sectionId/:topicId"
+            element={<ReadingPage />}
+          />
+          <Route path="/blogs" element={<BlogList />} />
+          <Route path="/blogs/:id" element={<BlogDetails />} />
+          <Route path="/about" element={<AboutPage />} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -26,9 +26,9 @@
         "path": "/about"
       },
       {
-        "label": "Pricing",
+        "label": "Blogs",
         "type": "link",
-        "path": "/pricing"
+        "path": "/blogs"
       }
     ],
     "cta": {
