@@ -1,8 +1,8 @@
 {
   "site": {
-    "title": "Interview Master",
+    "title": "Engineering tutorials",
     "tagline": "Master System Design & Algorithms",
-    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhW3OT_ik4vTyDmuS146qBcBH09uxRURIfYg&s",
+    "logo": "/logo.jpg",
     "headerLinks": [
       {
         "label": "Learn",
