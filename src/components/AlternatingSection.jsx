@@ -1,41 +1,58 @@
-import React from 'react';
-import data from '../data/alternating.json';
+import data from "../data/alternating.json";
 
 export default function AlternatingSection() {
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      {data.sections.map((sec, idx) => {
-        const reverse = !!sec.reverse;
-        return (
-          <div
-            key={idx}
-            className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center py-10 ${
-              reverse ? 'lg:flex-row-reverse' : ''
-            }`}
-          >
-            <div className="space-y-4">
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900">{sec.title}</h3>
-              <p className="text-gray-600 max-w-xl">{sec.description}</p>
-              {sec.cta && (
-                <a href={sec.cta.href || '#'} className="inline-block mt-4 bg-blue-600 text-white px-5 py-3 rounded-lg">
-                  {sec.cta.label}
-                </a>
-              )}
-            </div>
+    <section className="w-full py-20">
+      <div className="max-w-7xl mx-auto px-6 space-y-28">
 
-            <div className="w-full">
-              <div className="rounded-2xl overflow-hidden shadow-lg">
-                <img
-                  src={sec.imageUrl}
-                  alt={sec.title}
-                  className="w-full h-64 object-cover"
-                  onError={(e)=>{e.currentTarget.src = '/fallback-section.jpg'}}
-                />
+        {data.sections.map((sec, idx) => {
+          const reverse = sec.reverse;
+
+          return (
+            <div
+              key={idx}
+              className={`flex flex-col-reverse lg:flex-row items-center gap-12 ${
+                reverse ? "lg:flex-row-reverse" : ""
+              }`}
+            >
+              {/* Text Section */}
+              <div className="flex-1 space-y-5">
+                <h3 className="text-3xl font-bold text-gray-900 leading-snug">
+                  {sec.title}
+                </h3>
+
+                <p className="text-gray-600 text-lg max-w-xl leading-relaxed">
+                  {sec.description}
+                </p>
+
+                {sec.cta && (
+                  <a
+                    href={sec.cta.href}
+                    className="inline-flex items-center gap-2 bg-[#1f2d5a] hover:bg-[#162040] text-white px-5 py-3 rounded-md shadow-sm transition"
+                  >
+                    {sec.cta.label}
+                  </a>
+                )}
+              </div>
+
+              {/* Image Section */}
+              <div className="flex-1">
+                <div className="rounded-2xl overflow-hidden shadow-xl bg-white">
+                  <img
+                    src={sec.imageUrl}
+                    alt={sec.title}
+                    className="w-full h-[320px] object-cover"
+                    onError={(e) =>
+                      (e.currentTarget.src = "https://via.placeholder.com/600x400")
+                    }
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+
+      </div>
     </section>
   );
 }

@@ -3,6 +3,7 @@ import highlightData from '../data/highlight.json';
 
 export default function HighlightSection() {
   const { highlight } = highlightData;
+
   return (
     <section className="py-16 bg-gradient-to-r from-white to-blue-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,7 +16,7 @@ export default function HighlightSection() {
               onError={(e)=>{e.currentTarget.src = '/fallback-highlight.jpg'}}
             />
           </div>
-
+    
           <div className="lg:col-span-2 p-8">
             <h3 className="text-2xl font-bold">{highlight.name}</h3>
             <div className="text-sm text-gray-500 mt-1">{highlight.role}</div>

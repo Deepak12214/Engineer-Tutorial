@@ -1,10 +1,10 @@
 {
   "reviews": [
     {
-      "name": "Amit Sharma",
+      "name": "Deepak Sharma",
       "role": "Software Engineer @ Startup",
       "text": "The best interview preparation platform I’ve used. Clean notes and very helpful examples.",
-      "imageUrl": "https://randomuser.me/api/portraits/men/32.jpg"
+      "imageUrl": "/logo.jpg"
     },
     {
       "name": "Priya Mehta",

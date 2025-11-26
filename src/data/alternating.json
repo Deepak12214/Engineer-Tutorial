@@ -1,21 +1,33 @@
 {
   "sections": [
     {
-      "title": "Master Data Structures & Algorithms",
-      "description": "Learn every important DSA concept with structured explanations and illustrations.",
-      "imageUrl": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200",
+      "title": "Build Your Foundation with our World-Renowned Free Content",
+      "description": "Access our hugely popular free content library, written by experienced engineers. Get detailed breakdowns of common interview questions, deep dives, and interactive visualizations.",
+      "imageUrl": "https://images.unsplash.com/photo-1537432376769-00a5ca5a6c70?w=1200",
+      "cta": {
+        "label": "View Free Content",
+        "href": "/free-content"
+      },
       "reverse": false
     },
     {
-      "title": "Ace System Design Interviews",
-      "description": "Get highly visual, beginner-friendly, and interview-focused system design notes.",
-      "imageUrl": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200",
+      "title": "Go Deeper with Premium",
+      "description": "Unlock exclusive, in-depth content including common question breakdowns and detailed deep dives. Practice step-by-step with personalized guidance.",
+      "imageUrl": "https://images.unsplash.com/photo-1605902711622-cfb43c44367e?w=1200",
+      "cta": {
+        "label": "Learn More About Premium",
+        "href": "/premium"
+      },
       "reverse": true
     },
     {
-      "title": "Mock Interviews With Experts",
-      "description": "Practice realistic interviews to improve confidence and crack your dream job.",
-      "imageUrl": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200",
+      "title": "Put Your Learning to the Test with Mock Interviews",
+      "description": "Practice with mock interviews, get expert feedback, and refine the exact weak points stopping you from cracking real interviews.",
+      "imageUrl": "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200",
+      "cta": {
+        "label": "Learn More About Mock Interviews",
+        "href": "/mock"
+      },
       "reverse": false
     }
   ]
