@@ -5,14 +5,14 @@ export default function HighlightSection() {
   const { highlight } = highlightData;
 
   return (
-    <section className="py-16 bg-gradient-to-r from-white to-blue-50">
+    <section className="py-16 bg-linear-to-r from-white to-blue-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-3">
           <div className="lg:col-span-1">
             <img
               src={highlight.imageUrl}
               alt={highlight.name}
-              className="w-full h-full object-cover min-h-[320px]"
+              className="w-full h-full object-cover min-h-80"
               onError={(e)=>{e.currentTarget.src = '/fallback-highlight.jpg'}}
             />
           </div>

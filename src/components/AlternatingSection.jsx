@@ -41,7 +41,7 @@ export default function AlternatingSection() {
                   <img
                     src={sec.imageUrl}
                     alt={sec.title}
-                    className="w-full h-[320px] object-cover"
+                    className="w-full h-80 object-cover"
                     onError={(e) =>
                       (e.currentTarget.src = "https://via.placeholder.com/600x400")
                     }
