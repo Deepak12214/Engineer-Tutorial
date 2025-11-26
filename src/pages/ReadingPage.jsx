@@ -12,9 +12,11 @@ export default function ReadingPage() {
   const [currentTopic, setCurrentTopic] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [topicId]);
+useEffect(() => {
+  const el = document.getElementById("content-area");
+  if (el) el.scrollTo({ top: 0, behavior: "smooth" });
+}, [topicId]);
+
 
   useEffect(() => {
     let mounted = true;
@@ -80,7 +82,8 @@ export default function ReadingPage() {
 <div className="flex h-[calc(100vh-4.1rem)] overflow-hidden bg-gray-50">
 
       <Sidebar course={courseData} activeSectionId={sectionId} activeTopicId={topicId} />
-     <main className="flex-1 overflow-y-auto">
+<main id="content-area" className="flex-1 overflow-y-auto">
+
 
         <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 py-12">
           <nav className="flex items-center space-x-2 text-sm text-gray-500 mb-8">

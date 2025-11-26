@@ -60,7 +60,7 @@ export default function Sidebar({ course, activeSectionId, activeTopicId }) {
   return (
     <>
       {/* Mobile hamburger */}
-<div className="md:hidden fixed top-16 pt-2 left-4 z-50">
+<div className="md:hidden absolute  pt-2 left-4 z-50">
 
         <button
           onClick={() => setMobileOpen((v) => !v)}
@@ -72,9 +72,9 @@ export default function Sidebar({ course, activeSectionId, activeTopicId }) {
 
       {/* Sidebar wrapper: left side overflow hidden so page layout safe */}
 <aside
-  className={`fixed md:relative z-40 top-0 left-0 h-[calc(100vh-4rem)] w-80 bg-gray-50 border-r border-gray-200 
+  className={`absolute md:relative z-40 top-0 left-0 h-[calc(100vh-4rem)] w-80 bg-gray-50 border-r border-gray-200 
     transform transition-transform duration-300 ease-in-out 
-    ${mobileOpen ? "translate-x-0 my-10 " : "-translate-x-full"} 
+    ${mobileOpen ? "translate-x-0 pb-10" : "-translate-x-full"} 
     md:translate-x-0`}
 >
         {/* Inner scrolling container */}
