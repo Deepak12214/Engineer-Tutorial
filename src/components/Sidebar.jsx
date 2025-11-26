@@ -4,7 +4,6 @@ import { Link, useParams } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 
 export default function Sidebar({ course, activeSectionId, activeTopicId }) {
-  // guard: if course not provided yet, render nothing (or a placeholder)
   if (!course) {
     return null;
   }
@@ -61,26 +60,30 @@ export default function Sidebar({ course, activeSectionId, activeTopicId }) {
   return (
     <>
       {/* Mobile hamburger */}
-      <div className="md:hidden fixed top-4 left-4 z-50">
+<div className="md:hidden fixed top-16 pt-2 left-4 z-50">
+
         <button
           onClick={() => setMobileOpen((v) => !v)}
-          className="p-2 rounded-md bg-gray-100 hover:bg-gray-200 focus:outline-none"
+          className="p-2  rounded-md bg-gray-100 hover:bg-gray-200 focus:outline-none"
         >
           {mobileOpen ? <FiX size={24} /> : <FiMenu size={24} />}
         </button>
       </div>
 
       {/* Sidebar wrapper: left side overflow hidden so page layout safe */}
-      <aside
-        className={`fixed md:relative z-40 top-0 left-0 h-full w-80 bg-gray-50 border-r border-gray-200 transform transition-transform duration-300 ease-in-out ${mobileOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}
-      >
+<aside
+  className={`fixed md:relative z-40 top-0 left-0 h-[calc(100vh-4rem)] w-80 bg-gray-50 border-r border-gray-200 
+    transform transition-transform duration-300 ease-in-out 
+    ${mobileOpen ? "translate-x-0 my-10 " : "-translate-x-full"} 
+    md:translate-x-0`}
+>
         {/* Inner scrolling container */}
         <div
           ref={containerRef}
-          className="h-full p-6 mt-16 md:mt-0 overflow-y-auto"
+          className={` h-full p-6 mt-16 md:mt-0 overflow-y-auto  `}
         >
           <div className="mb-6">
-            <h2 className="text-2xl font-bold text-gray-900">{course.title}</h2>
+            <h2 className="text-2xl font-bold text-gray-900 ">{course.title}</h2>
             <p className="text-sm text-gray-500 mt-1">
               {course.sections.reduce((total, s) => total + (s.topics?.length || 0), 0)} topics
             </p>
@@ -140,7 +143,7 @@ export default function Sidebar({ course, activeSectionId, activeTopicId }) {
             })}
           </nav>
 
-          <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+          {/* <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-blue-900">Course Progress</span>
               <span className="text-xs text-blue-600">Coming soon</span>
@@ -148,7 +151,7 @@ export default function Sidebar({ course, activeSectionId, activeTopicId }) {
             <div className="w-full bg-blue-200 rounded-full h-2">
               <div className="bg-blue-600 h-2 rounded-full" style={{ width: "0%" }} />
             </div>
-          </div>
+          </div> */}
         </div>
       </aside>
     </>

@@ -5,7 +5,7 @@ export default function HeroSection() {
   const { title, highlight, subtitle, primaryCTA, secondaryCTA, imageUrl } = heroData;
 
   return (
-    <section className="bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <section className="bg-linear-to-br from-blue-50 via-white to-purple-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* Left: Text */}
@@ -18,7 +18,7 @@ export default function HeroSection() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               <span className="block">{title}</span>
               {highlight && (
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                <span className="block text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-purple-600">
                   {highlight}
                 </span>
               )}
@@ -47,12 +47,11 @@ export default function HeroSection() {
 
           {/* Right: Image (hidden on small screens) */}
           <div className="hidden lg:block">
-            <div className="rounded-3xl shadow-2xl overflow-hidden aspect-video bg-gradient-to-br from-blue-400 to-purple-400">
+            <div className="rounded-3xl shadow-2xl overflow-hidden aspect-video bg-linear-to-br from-blue-400 to-purple-400">
               <img
                 src={imageUrl}
                 alt="Hero"
                 className="w-full h-full object-cover"
-                onError={(e)=>{e.currentTarget.src = '/fallback-hero.jpg'}} 
               />
             </div>
           </div>

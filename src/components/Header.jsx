@@ -76,7 +76,7 @@ export default function Header() {
               <img
                 src={site.logo}
                 alt="logo"
-                className="w-10 h-10 rounded-md object-cover"
+                className=" h-30 rounded-md object-cover"
                 onError={(e) => { e.currentTarget.src = '/fallback-logo.png'; }}
               />
             ) : (

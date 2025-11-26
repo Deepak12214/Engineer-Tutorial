@@ -20,7 +20,6 @@ export default function ReviewsSection() {
                   src={r.imageUrl}
                   alt={r.name}
                   className="w-14 h-14 rounded-full object-cover"
-                  onError={(e)=>{e.currentTarget.src = '/fallback-avatar.jpg'}}
                 />
                 <div>
                   <div className="font-semibold">{r.name}</div>

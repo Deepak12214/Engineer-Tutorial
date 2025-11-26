@@ -13,7 +13,6 @@ export default function HighlightSection() {
               src={highlight.imageUrl}
               alt={highlight.name}
               className="w-full h-full object-cover min-h-80"
-              onError={(e)=>{e.currentTarget.src = '/fallback-highlight.jpg'}}
             />
           </div>
     

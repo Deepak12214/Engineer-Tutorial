@@ -12,7 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-white">
-        {/* <Header /> */}
+        <Header />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route

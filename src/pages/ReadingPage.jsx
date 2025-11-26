@@ -77,7 +77,7 @@ export default function ReadingPage() {
   return (
 
 
-<div className="flex h-screen overflow-hidden bg-gray-50">
+<div className="flex h-[calc(100vh-4.1rem)] overflow-hidden bg-gray-50">
 
       <Sidebar course={courseData} activeSectionId={sectionId} activeTopicId={topicId} />
      <main className="flex-1 overflow-y-auto">
