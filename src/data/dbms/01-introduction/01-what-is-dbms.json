@@ -1,0 +1,47 @@
+{
+  "id": "what-is-dbms",
+  "heading": "What is DBMS?",
+  "blocks": [
+    {
+      "text": "A Database Management System (DBMS) is software that allows users to define, create, maintain, and control access to databases. It provides a systematic and organized way to store, retrieve, and manage data efficiently."
+    },
+    {
+      "list": [
+        "Data Storage: Efficiently store data in structured formats.",
+        "Data Retrieval: Quick querying and retrieval of information.",
+        "Data Security: Ensure only authorized users can access the data.",
+        "Backup & Recovery: Protect against data loss and system failures.",
+        "Consistency: Maintain accurate and reliable data across multiple users and operations."
+      ]
+    },
+    {
+      "text": "Think of DBMS as a bridge between the user and the data. Users can interact with data without worrying about how it is stored internally."
+    },
+    {
+      "badge": "success",
+      "title": "Key Insight",
+      "text": "Almost all modern applications, from banking systems to social media, rely on DBMS to manage their data efficiently."
+    },
+    {
+      "image": {
+        "src": "https://via.placeholder.com/800x400?text=DBMS+Architecture",
+        "alt": "DBMS Architecture",
+        "caption": "High-level view of a DBMS architecture showing data flow and components."
+      }
+    },
+    {
+      "text": "DBMS comes in multiple types depending on the way data is organized. Some common types include Relational DBMS (RDBMS), NoSQL databases, Object-Oriented DBMS, and Hierarchical DBMS."
+    },
+    {
+      "list": [
+        "Relational DBMS: Data organized in tables with rows and columns (e.g., MySQL, PostgreSQL).",
+        "NoSQL DBMS: Non-relational, flexible schemas (e.g., MongoDB, Cassandra).",
+        "Object-Oriented DBMS: Stores data as objects (e.g., db4o).",
+        "Hierarchical DBMS: Data organized in tree-like structures (e.g., IBM IMS)."
+      ]
+    },
+    {
+      "text": "Overall, DBMS acts as the backbone for data-driven applications and ensures smooth, secure, and consistent data management across the system."
+    }
+  ]
+}

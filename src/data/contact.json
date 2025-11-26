@@ -1,0 +1,14 @@
+{
+  "contactInfo": {
+    "phone": "+91 98765 43210",
+    "email": "your-email@gmail.com",
+    "address": "Your Office Address, City, Country"
+  },
+  "formSubjects": [
+    "General Help",
+    "Report an Issue",
+    "Course Inquiry",
+    "Feedback",
+    "Other"
+  ]
+}

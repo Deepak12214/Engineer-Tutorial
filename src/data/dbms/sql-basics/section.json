@@ -1,0 +1,10 @@
+{
+  "id": "sql-basics",
+  "title": "SQL Basics",
+  "description": "Learn how to write SQL queries, joins, and aggregate functions with deep examples and exercises.",
+  "topics": [
+    { "id": "select-queries", "title": "SELECT Queries" },
+    { "id": "joins", "title": "Joins in SQL" },
+    { "id": "aggregate-functions", "title": "Aggregate Functions" }
+  ]
+}

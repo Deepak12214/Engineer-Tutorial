@@ -1,0 +1,15 @@
+{
+  "id": "types",
+  "heading": "Types of Load Balancers",
+  "blocks": [
+    {
+      "heading": "Main Types"
+    },
+    {
+      "list": [
+        "Hardware Load Balancer",
+        "Software Load Balancer"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "what-is-load-balancing",
+  "heading": "What is Load Balancing?",
+  "blocks": [
+    {
+      "text": "Load balancing distributes incoming traffic across multiple servers."
+    },
+    {
+      "list": [
+        "Improves reliability",
+        "Ensures better performance"
+      ]
+    }
+  ]
+}

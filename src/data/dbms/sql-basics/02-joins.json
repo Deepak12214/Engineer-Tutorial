@@ -1,0 +1,54 @@
+{
+  "id": "joins",
+  "heading": "Joins in SQL – Mastering Data Relationships",
+  "blocks": [
+    {
+      "text": "JOINs allow combining rows from two or more tables based on related columns. They are essential for relational database queries."
+    },
+    {
+      "list": [
+        "INNER JOIN – returns only matching rows",
+        "LEFT JOIN – returns all rows from the left table, matching from right",
+        "RIGHT JOIN – returns all rows from the right table, matching from left",
+        "FULL OUTER JOIN – returns all rows from both tables"
+      ]
+    },
+    {
+      "image": {
+        "src": "https://via.placeholder.com/800x400?text=SQL+JOIN+Types",
+        "alt": "SQL JOIN Types",
+        "caption": "Venn diagram showing different types of SQL joins."
+      }
+    },
+    {
+      "text": "Example: INNER JOIN to combine users with their orders:"
+    },
+    {
+      "code": [
+        {
+          "language": "sql",
+          "content": "SELECT Users.name, Orders.amount\nFROM Users\nINNER JOIN Orders ON Users.id = Orders.user_id\nWHERE Orders.amount > 100;"
+        }
+      ]
+    },
+    {
+      "text": "Advanced JOINs:"
+    },
+    {
+      "list": [
+        "Self-Join – a table joined with itself",
+        "Cross Join – Cartesian product of two tables",
+        "Using JOIN with aggregate functions to summarize data",
+        "Multiple JOINs – joining 3 or more tables in a single query"
+      ]
+    },
+    {
+      "badge": "success",
+      "title": "Performance Tip",
+      "text": "Indexes on join columns dramatically improve performance. Without indexes, large JOINs can be very slow."
+    },
+    {
+      "text": "Mini Exercise: Write a query to find users who have not placed any orders. Think about which JOIN type to use."
+    }
+  ]
+}

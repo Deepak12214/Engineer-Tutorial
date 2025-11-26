@@ -14,11 +14,16 @@
             "description": "Learn scalable system architecture"
           },
           {
-            "label": "Algorithms",
-            "courseId": "algorithms",
-            "description": "Master DSA concepts"
-          }
+          "courseId": "dbms",
+          "label": "Database Management System",
+          "description": "Learn DBMS, SQL, transactions, indexing, and advanced topics"
+        }
         ]
+      },
+      {
+        "label": "Blogs",
+        "type": "link",
+        "path": "/blogs"
       },
       {
         "label": "About",
@@ -26,9 +31,9 @@
         "path": "/about"
       },
       {
-        "label": "Blogs",
+        "label": "Contact Us",
         "type": "link",
-        "path": "/blogs"
+        "path": "/contact"
       }
     ],
     "cta": {

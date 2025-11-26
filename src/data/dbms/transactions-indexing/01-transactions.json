@@ -1,0 +1,64 @@
+{
+  "id": "transactions",
+  "heading": "Transactions in DBMS – Ultra Detailed",
+  "blocks": [
+    {
+      "text": "A transaction is a sequence of one or more operations performed as a single logical unit of work. Transactions ensure the database remains consistent even in case of failures."
+    },
+    {
+      "list": [
+        "Atomicity: The transaction is all or nothing.",
+        "Consistency: Moves database from one valid state to another.",
+        "Isolation: Concurrent transactions do not interfere.",
+        "Durability: Committed changes are permanent."
+      ]
+    },
+    {
+      "text": "Real-world Example: Transferring money from one bank account to another is a transaction. Both debit and credit must happen together, or neither should happen."
+    },
+    {
+      "code": [
+        {
+          "language": "sql",
+          "content": "BEGIN TRANSACTION;\nUPDATE Accounts SET balance = balance - 500 WHERE account_id = 101;\nUPDATE Accounts SET balance = balance + 500 WHERE account_id = 102;\nCOMMIT;"
+        }
+      ]
+    },
+    {
+      "badge": "success",
+      "title": "Deep Insight",
+      "text": "Each transaction must pass ACID properties. In real-world banking systems, millions of such transactions happen concurrently every second."
+    },
+    {
+      "text": "Transactions can fail due to power loss, system crashes, or application errors. DBMS uses **rollback** to undo partial changes."
+    },
+    {
+      "code": [
+        {
+          "language": "sql",
+          "content": "BEGIN TRANSACTION;\nUPDATE Accounts SET balance = balance - 500 WHERE account_id = 101;\n-- System crash occurs here\nROLLBACK;"
+        }
+      ]
+    },
+    {
+      "text": "Tip: Every transaction should be designed to be **idempotent**, i.e., reapplying it should not corrupt data."
+    },
+    {
+      "list": [
+        "Transaction States: Active, Partially Committed, Committed, Failed, Aborted",
+        "Commit Logs: Records every transaction to allow recovery",
+        "Checkpointing: Saves consistent states periodically for fast recovery"
+      ]
+    },
+    {
+      "image": {
+        "src": "https://via.placeholder.com/800x400?text=Transaction+Flow",
+        "alt": "Transaction Lifecycle",
+        "caption": "Transaction lifecycle from active to committed/rolled back."
+      }
+    },
+    {
+      "text": "Mini Exercise: Imagine a ticket booking system. List 3 possible transaction failures and how rollback or commit would handle them."
+    }
+  ]
+}

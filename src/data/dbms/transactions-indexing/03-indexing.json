@@ -1,0 +1,58 @@
+{
+  "id": "indexing",
+  "heading": "Indexing for Performance – Ultra Detailed",
+  "blocks": [
+    {
+      "text": "Indexing improves query performance by allowing the database to find rows faster, similar to the index of a book."
+    },
+    {
+      "list": [
+        "B-Tree Index: Balanced tree structure for fast search, insert, delete",
+        "Hash Index: Fast exact-match lookups using hash functions",
+        "Composite Index: Index on multiple columns for complex queries",
+        "Unique Index: Ensures column uniqueness",
+        "Full-Text Index: Efficient search on text fields"
+      ]
+    },
+    {
+      "image": {
+        "src": "https://via.placeholder.com/800x400?text=Index+Types",
+        "alt": "Database Index Types",
+        "caption": "Different types of indexing and their use cases."
+      }
+    },
+    {
+      "text": "Example: Creating a B-Tree index on the 'email' column of Users table:"
+    },
+    {
+      "code": [
+        {
+          "language": "sql",
+          "content": "CREATE INDEX idx_users_email ON Users(email);"
+        }
+      ]
+    },
+    {
+      "text": "Indexing considerations:"
+    },
+    {
+      "list": [
+        "Indexes speed up SELECT but slow down INSERT, UPDATE, DELETE",
+        "Use indexes selectively on frequently queried columns",
+        "Monitor index usage and remove unused indexes to save space",
+        "Combine indexes with query optimization for best performance"
+      ]
+    },
+    {
+      "badge": "success",
+      "title": "Real World Tip",
+      "text": "Large-scale databases (millions of rows) rely heavily on indexing. Poor indexing can make queries take minutes instead of milliseconds."
+    },
+    {
+      "text": "Mini Exercise: Identify columns in a Sales table that would benefit most from indexes and explain why."
+    },
+    {
+      "text": "Advanced: Covering Indexes, Partial Indexes, and Indexing for JOINs and Aggregates for high-performance queries in OLAP and OLTP systems."
+    }
+  ]
+}

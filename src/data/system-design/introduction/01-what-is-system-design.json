@@ -1,0 +1,16 @@
+{
+  "id": "what-is-system-design",
+  "heading": "What is System Design?",
+  "blocks": [
+    {
+      "text": "System design is the process of defining architecture and components of a system."
+    },
+    {
+      "list": [
+        "High-level architecture",
+        "Scalability decisions",
+        "Component interaction"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "nosql-models",
+  "heading": "NoSQL Database Models",
+  "blocks": [
+    {
+      "text": "NoSQL databases are non-relational, designed for flexible schemas and massive-scale data. They are widely used for Big Data, real-time analytics, and distributed systems."
+    },
+    {
+      "list": [
+        "Document-Based: Stores data in JSON-like documents (e.g., MongoDB).",
+        "Key-Value: Stores data as key-value pairs for fast lookup (e.g., Redis).",
+        "Column-Based: Stores data by columns instead of rows for analytics (e.g., Cassandra).",
+        "Graph-Based: Stores data as nodes and edges for relationships (e.g., Neo4j)."
+      ]
+    },
+    {
+      "image": {
+        "src": "https://via.placeholder.com/800x400?text=NoSQL+Types",
+        "alt": "NoSQL Database Types",
+        "caption": "Common NoSQL database types and their use cases."
+      }
+    },
+    {
+      "text": "NoSQL databases offer horizontal scalability, high availability, and schema flexibility, which are crucial for web-scale applications."
+    },
+    {
+      "badge": "success",
+      "title": "Example Use Case",
+      "text": "Social media platforms use document-based and graph databases to store user posts, relationships, and interactions efficiently."
+    },
+    {
+      "code": [
+        {
+          "language": "javascript",
+          "content": "// MongoDB example: Insert a document\ndb.users.insertOne({\n  _id: 1,\n  name: 'Alice',\n  email: 'alice@example.com',\n  posts: [ 'Hello World', 'DBMS is fun!' ]\n});"
+        }
+      ]
+    }
+  ]
+}

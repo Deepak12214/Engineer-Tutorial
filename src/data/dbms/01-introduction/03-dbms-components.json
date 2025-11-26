@@ -1,0 +1,53 @@
+{
+  "id": "dbms-components",
+  "heading": "Components of DBMS",
+  "blocks": [
+    {
+      "text": "A DBMS is made up of several key components that work together to manage data efficiently:"
+    },
+    {
+      "list": [
+        "Database Engine: Core service for storing, retrieving, and updating data.",
+        "Query Processor: Interprets and executes SQL queries.",
+        "Storage Manager: Handles storage, indexing, and retrieval of data on disk.",
+        "Transaction Manager: Ensures all database transactions are processed reliably and follow ACID properties.",
+        "Metadata Catalog: Stores information about database structure and schema.",
+        "Backup & Recovery Manager: Maintains data integrity and helps recover data in case of failure."
+      ]
+    },
+    {
+      "image": {
+        "src": "https://via.placeholder.com/800x400?text=DBMS+Components",
+        "alt": "DBMS Components",
+        "caption": "Visual representation of DBMS components interacting with each other."
+      }
+    },
+    {
+      "text": "Let’s briefly understand ACID properties which are crucial for transaction management:"
+    },
+    {
+      "list": [
+        "Atomicity: Either all operations of a transaction are performed or none.",
+        "Consistency: Database moves from one valid state to another after a transaction.",
+        "Isolation: Concurrent transactions do not interfere with each other.",
+        "Durability: Once a transaction is committed, it will remain so even in case of a system failure."
+      ]
+    },
+    {
+      "code": [
+        {
+          "language": "sql",
+          "content": "BEGIN TRANSACTION;\nINSERT INTO accounts VALUES (1, 'Alice', 5000);\nUPDATE accounts SET balance = balance - 1000 WHERE name = 'Alice';\nCOMMIT;"
+        }
+      ]
+    },
+    {
+      "badge": "success",
+      "title": "Summary",
+      "text": "Understanding DBMS components is the foundation for learning advanced topics like SQL queries, NoSQL databases, indexing, and replication."
+    },
+    {
+      "text": "With this knowledge, you're ready to dive into database models, SQL basics, and more advanced DBMS concepts."
+    }
+  ]
+}

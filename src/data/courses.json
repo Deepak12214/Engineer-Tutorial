@@ -5,18 +5,18 @@
       "title": "System Design",
       "description": "Learn to design scalable systems from scratch",
       "icon": "🏗️",
-      "defaultRoute": "/learn/system-design/in-a-hurry/introduction",
+      "defaultRoute": "/learn/system-design/introduction/what-is-system-design",
       "totalSections": 1,
       "totalTopics": 6
     },
     {
-      "id": "algorithms",
-      "title": "Algorithms & Data Structures",
-      "description": "Master algorithms and problem solving",
-      "icon": "🧮",
-      "defaultRoute": "/learn/algorithms/basics/introduction",
-      "totalSections": 1,
-      "totalTopics": 4
+      "id": "dbms",
+      "title": "Database Management System",
+      "description": "Learn DBMS concepts, SQL, transactions, indexing, and advanced database topics",
+      "icon": "💾",
+      "defaultRoute": "/learn/dbms/introduction/what-is-dbms",
+      "totalSections": 4,
+      "totalTopics": 12
     }
   ]
 }

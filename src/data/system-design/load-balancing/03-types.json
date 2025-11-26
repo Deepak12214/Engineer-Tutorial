@@ -1,0 +1,19 @@
+{
+  "order": 3,
+  "id": "load-balancer-types",
+  "heading": "Types of Load Balancers",
+  "subheading": "Hardware, Software, Layer 4 and Layer 7",
+  "content": "Load balancers work at different layers of the OSI model. Layer 4 handles TCP/UDP traffic, while Layer 7 deals with HTTP requests.",
+  "points": [
+    "Hardware Load Balancers",
+    "Software Load Balancers (Nginx, HAProxy)",
+    "Layer 4 LB",
+    "Layer 7 LB"
+  ],
+  "images": [
+    {
+      "url": "https://source.unsplash.com/random/800x400?datacenter,hardware",
+      "caption": "Example of a real-world load balancing setup"
+    }
+  ]
+}
