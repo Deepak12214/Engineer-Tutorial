@@ -9,7 +9,6 @@ import ContactPage from "./pages/ContactPage";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
-
 function App() {
   const theme = useSelector((state) => state.theme.mode);
 
@@ -20,8 +19,16 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-white">
+      <div
+        className="
+          min-h-screen
+          bg-bg-main
+          text-text-primary
+          transition-colors
+        "
+      >
         <Header />
+
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route
@@ -32,7 +39,6 @@ function App() {
           <Route path="/blogs/:id" element={<BlogDetails />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
-
         </Routes>
       </div>
     </BrowserRouter>

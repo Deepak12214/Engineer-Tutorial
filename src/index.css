@@ -12,3 +12,32 @@
   @apply text-red-600 text-sm mt-1;
 }
 
+@theme {
+  --color-bg-main: #F8FAFC;        /* slate-50 */
+  --color-bg-surface: #FFFFFF;     /* white */
+  
+  --color-text-primary: #0F172A;   /* slate-900 */
+  --color-text-secondary: #475569; /* slate-600 */
+  
+  --color-border: #E2E8F0;         /* slate-200 */
+
+  --color-accent: #6366F1;         /* indigo-500 */
+  --color-accent-hover: #4F46E5;   /* indigo-600 */
+}
+
+.dark {
+  --color-bg-main: #0B1120;        /* Deep Navy - IR's exact vibe */
+  --color-bg-surface: #111827;     /* Slightly lighter navy */
+  
+  --color-text-primary: #F1F5F9;   /* slate-100 */
+  --color-text-secondary: #64748B; /* slate-400 */
+  
+  --color-border: #1E293B;         /* slate-700 */
+
+  --color-accent: #8B5CF6;         /* purple-500 (IR's button color) */
+  --color-accent-hover: #7C3AED;   /* purple-600 */
+}
+
+  :root, .dark {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

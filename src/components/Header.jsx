@@ -1,23 +1,26 @@
-import { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import siteData from '../data/site.json';
-import coursesData from '../data/courses.json';
+import { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleTheme } from "../store/themeSlice";
+import siteData from "../data/site.json";
+import coursesData from "../data/courses.json";
+import { FiSun, FiMoon } from "react-icons/fi";
 
 export default function Header() {
+  const theme = useSelector((state) => state.theme.mode);
+  const dispatch = useDispatch();
+
   const { site } = siteData;
   const { courses } = coursesData;
 
-  // dropdown state
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(null);
+
   const openTimerRef = useRef(null);
   const closeTimerRef = useRef(null);
 
-  // mobile menu state
-  const [mobileOpen, setMobileOpen] = useState(false);
-  // mobile dropdown expanded (index by label)
-  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(null);
-
-  // Clear timers on unmount
+  /* Cleanup timers */
   useEffect(() => {
     return () => {
       clearTimeout(openTimerRef.current);
@@ -25,40 +28,36 @@ export default function Header() {
     };
   }, []);
 
-  // Hover enter: open immediately (but cancel any close timer)
+  /* Desktop hover open */
   const handleMouseEnter = (label) => {
     clearTimeout(closeTimerRef.current);
-    // small debounce to avoid accidental opens; makes UX smoother
     openTimerRef.current = setTimeout(() => {
       setOpenDropdown(label);
-    }, 80); // 80ms open delay
+    }, 80);
   };
 
-  // Hover leave: close after short delay to avoid flicker
   const handleMouseLeave = (label) => {
     clearTimeout(openTimerRef.current);
     closeTimerRef.current = setTimeout(() => {
-      // only close if same label is open
-      setOpenDropdown((current) => (current === label ? null : current));
-    }, 180); // 180ms close delay
+      setOpenDropdown((curr) => (curr === label ? null : curr));
+    }, 150);
   };
 
-  // For keyboard accessibility: open on focus, close on blur
+  /* Keyboard */
   const handleFocus = (label) => {
     clearTimeout(closeTimerRef.current);
     setOpenDropdown(label);
   };
+
   const handleBlur = (label) => {
-    // delay close so keyboard navigation between items works
     closeTimerRef.current = setTimeout(() => {
-      setOpenDropdown((current) => (current === label ? null : current));
-    }, 160);
+      setOpenDropdown((curr) => (curr === label ? null : curr));
+    }, 150);
   };
 
-  // Mobile toggles
+  /* Mobile nav */
   const toggleMobile = () => {
     setMobileOpen((s) => !s);
-    // reset mobile dropdown state when closing mobile menu
     if (mobileOpen) setMobileDropdownOpen(null);
   };
 
@@ -67,7 +66,7 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <header className="sticky top-0 z-50 bg-bg-main text-text-primary border-b border-border shadow-sm transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -76,21 +75,24 @@ export default function Header() {
               <img
                 src={site.logo}
                 alt="logo"
-                className=" h-30 rounded-md object-cover"
-                onError={(e) => { e.currentTarget.src = '/fallback-logo.png'; }}
+                className="h-30 rounded-md object-cover dark:brightness-0 dark:invert"
+                onError={(e) => {
+                  e.currentTarget.src = "/fallback-logo.png";
+                }}
               />
             ) : (
-              <span className="text-3xl">{/* fallback emoji or icon */}🎯</span>
+              <span className="text-3xl">🎯</span>
             )}
-            <span className="hidden sm:block text-xl font-bold text-gray-900">
+
+            <span className="hidden sm:block text-xl font-bold text-text-primary">
               {site.title}
             </span>
           </Link>
 
-          {/* Desktop nav */}
+          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center space-x-8">
             {site.headerLinks.map((link) => {
-              const isDropdown = link.type === 'dropdown';
+              const isDropdown = link.type === "dropdown";
               const label = link.label;
 
               return (
@@ -108,42 +110,47 @@ export default function Header() {
                         aria-expanded={openDropdown === label}
                         onFocus={() => handleFocus(label)}
                         onBlur={() => handleBlur(label)}
-                        className="flex items-center space-x-1 text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                        className="flex items-center space-x-1 font-medium text-text-primary dark:text-text-primary hover:text-accent transition-colors"
                       >
                         <span>{label}</span>
                         <svg
-                          className={`w-4 h-4 transition-transform ${openDropdown === label ? 'rotate-180' : ''}`}
+                          className={`w-4 h-4 transition-transform ${
+                            openDropdown === label ? "rotate-180" : ""
+                          }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
-                          aria-hidden="true"
                         >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
                         </svg>
                       </button>
 
-                      {/* Dropdown */}
                       {openDropdown === label && (
-                        <div
-                          className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 pointer-events-auto"
-                          onMouseEnter={() => { clearTimeout(closeTimerRef.current); }}
-                          onMouseLeave={() => handleMouseLeave(label)}
-                        >
+                        <div className="absolute top-full left-0 mt-2 w-64 bg-bg-surface border border-border rounded-lg shadow-xl py-2 transition-colors">
                           {link.items.map((item) => {
-                            const course = courses.find((c) => c.id === item.courseId);
+                            const course = courses.find(
+                              (c) => c.id === item.courseId
+                            );
                             return (
                               <Link
                                 key={item.courseId}
-                                to={course?.defaultRoute || '/'}
-                                className="block px-4 py-3 hover:bg-blue-50 transition-colors group"
+                                to={course?.defaultRoute || "/"}
+                                className="block px-4 py-3 hover:bg-border/20 transition-colors"
                               >
                                 <div className="flex items-start space-x-3">
-                                  <span className="text-2xl">{course?.icon}</span>
+                                  <span className="text-2xl">
+                                    {course?.icon}
+                                  </span>
                                   <div>
-                                    <div className="font-medium text-gray-900 group-hover:text-blue-600">
+                                    <div className="font-medium text-text-primary hover:text-accent">
                                       {item.label}
                                     </div>
-                                    <div className="text-sm text-gray-500 mt-1">
+                                    <div className="text-sm text-text-secondary mt-1">
                                       {item.description}
                                     </div>
                                   </div>
@@ -157,7 +164,7 @@ export default function Header() {
                   ) : (
                     <Link
                       to={link.path}
-                      className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                      className="font-medium text-text-primary hover:text-accent transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -167,62 +174,101 @@ export default function Header() {
             })}
           </nav>
 
-          {/* CTA */}
-          <div className="hidden md:block">
-            <button className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-sm">
+          {/* CTA + Theme Toggle */}
+          <div className="hidden md:flex items-center gap-4">
+            <button
+              onClick={() => dispatch(toggleTheme())}
+              className="
+    ml-4 flex items-center justify-center
+    w-10 h-10 rounded-full
+    bg-bg-surface
+    border border-border
+    hover:bg-border/20
+    transition-all duration-300
+  "
+            >
+              {theme === "dark" ? (
+                <FiSun className="text-accent text-lg" />
+              ) : (
+                <FiMoon className="text-accent text-lg" />
+              )}
+            </button>
+
+            <button className="px-6 py-2 rounded-lg bg-accent hover:bg-accent-hover text-white font-medium transition-colors shadow-sm">
               {site.cta.primary}
             </button>
           </div>
 
-          {/* mobile hamburger */}
+          {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-gray-700 p-2"
+            className="md:hidden p-2 text-text-primary"
             onClick={toggleMobile}
             aria-expanded={mobileOpen}
-            aria-label="Toggle menu"
           >
-            {/* simple hamburger icon */}
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={mobileOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+            <svg className="w-6 h-6" fill="none" stroke="currentColor">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d={
+                  mobileOpen
+                    ? "M6 18L18 6M6 6l12 12"
+                    : "M4 6h16M4 12h16M4 18h16"
+                }
+              />
             </svg>
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile Menu */}
       {mobileOpen && (
-        <nav className="md:hidden bg-white border-t border-gray-200 px-4 py-4">
+        <nav className="md:hidden bg-bg-main border-t border-border px-4 py-4 text-text-primary transition-colors">
           <div className="flex flex-col gap-3">
             {site.headerLinks.map((link) => {
               const label = link.label;
-              if (link.type === 'dropdown') {
+
+              if (link.type === "dropdown") {
                 return (
-                  <div key={label} className="w-full">
+                  <div key={label}>
                     <button
-                      type="button"
-                      className="w-full flex items-center justify-between font-medium px-2 py-2"
                       onClick={() => toggleMobileDropdown(label)}
-                      aria-expanded={mobileDropdownOpen === label}
+                      className="w-full flex items-center justify-between px-2 py-2 font-medium"
                     >
                       <span>{label}</span>
-                      <svg className={`w-5 h-5 transition-transform ${mobileDropdownOpen === label ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      <svg
+                        className={`w-5 h-5 transition-transform ${
+                          mobileDropdownOpen === label ? "rotate-180" : ""
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
                       </svg>
                     </button>
 
                     {mobileDropdownOpen === label && (
                       <div className="mt-2 pl-4 space-y-1">
                         {link.items.map((item) => {
-                          const course = courses.find((c) => c.id === item.courseId);
+                          const course = courses.find(
+                            (c) => c.id === item.courseId
+                          );
                           return (
                             <Link
                               key={item.courseId}
-                              to={course?.defaultRoute || '/'}
-                              className="block px-2 py-2 rounded hover:bg-gray-100"
+                              to={course.defaultRoute}
+                              className="block px-2 py-2 rounded hover:bg-border/20"
                               onClick={() => setMobileOpen(false)}
                             >
                               <div className="font-medium">{item.label}</div>
-                              <div className="text-xs text-gray-500">{item.description}</div>
+                              <div className="text-xs text-text-secondary">
+                                {item.description}
+                              </div>
                             </Link>
                           );
                         })}
@@ -232,23 +278,33 @@ export default function Header() {
                 );
               }
 
-              // simple link
               return (
-                <Link key={label} to={link.path} className="block px-2 py-2 font-medium hover:bg-gray-50" onClick={() => setMobileOpen(false)}>
+                <Link
+                  key={label}
+                  to={link.path}
+                  className="block px-2 py-2 font-medium hover:bg-border/20 rounded"
+                  onClick={() => setMobileOpen(false)}
+                >
                   {label}
                 </Link>
               );
             })}
 
-            {/* CTAs in mobile */}
-            <div className="mt-2 flex flex-col gap-2">
-              <button className="w-full px-4 py-2 rounded-md border border-blue-600 text-blue-600" onClick={() => setMobileOpen(false)}>
-                {site.cta.secondary}
-              </button>
-              <button className="w-full px-4 py-2 rounded-md bg-blue-600 text-white" onClick={() => setMobileOpen(false)}>
-                {site.cta.primary}
-              </button>
-            </div>
+            {/* Mobile CTA */}
+            <button className="w-full px-4 py-2 rounded-md border border-accent text-accent">
+              {site.cta.secondary}
+            </button>
+            <button className="w-full px-4 py-2 rounded-md bg-accent text-white">
+              {site.cta.primary}
+            </button>
+
+            {/* Theme Toggle Mobile */}
+            <button
+              onClick={() => dispatch(toggleTheme())}
+              className="mt-3 p-2 rounded-md bg-bg-surface border border-border hover:bg-border/20"
+            >
+              {theme === "dark" ? "🌞 Light Mode" : "🌙 Dark Mode"}
+            </button>
           </div>
         </nav>
       )}

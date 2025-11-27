@@ -2,7 +2,7 @@ import data from "../data/alternating.json";
 
 export default function AlternatingSection() {
   return (
-    <section className="w-full py-20">
+    <section className="w-full py-20 bg-bg-main transition-colors">
       <div className="max-w-7xl mx-auto px-6 space-y-28">
 
         {data.sections.map((sec, idx) => {
@@ -15,29 +15,45 @@ export default function AlternatingSection() {
                 reverse ? "lg:flex-row-reverse" : ""
               }`}
             >
-              {/* Text Section */}
+
+              {/* TEXT SECTION */}
               <div className="flex-1 space-y-5">
-                <h3 className="text-3xl font-bold text-gray-900 leading-snug">
+                <h3 className="text-3xl font-bold text-text-primary leading-snug transition-colors">
                   {sec.title}
                 </h3>
 
-                <p className="text-gray-600 text-lg max-w-xl leading-relaxed">
+                <p className="text-text-secondary text-lg max-w-xl leading-relaxed transition-colors">
                   {sec.description}
                 </p>
 
                 {sec.cta && (
                   <a
                     href={sec.cta.href}
-                    className="inline-flex items-center gap-2 bg-[#1f2d5a] hover:bg-[#162040] text-white px-5 py-3 rounded-md shadow-sm transition"
+                    className="
+                      inline-flex items-center gap-2
+                      px-5 py-3 rounded-lg font-medium
+                      bg-accent
+                      hover:bg-accent-hover
+                      text-white shadow-md
+                      transition-all duration-300
+                    "
                   >
                     {sec.cta.label}
                   </a>
                 )}
               </div>
 
-              {/* Image Section */}
+              {/* IMAGE SECTION */}
               <div className="flex-1">
-                <div className="rounded-2xl overflow-hidden shadow-xl bg-white">
+                <div
+                  className="
+                    rounded-2xl overflow-hidden
+                    shadow-xl 
+                    bg-bg-surface
+                    border border-border
+                    transition-colors
+                  "
+                >
                   <img
                     src={sec.imageUrl}
                     alt={sec.title}
@@ -45,6 +61,7 @@ export default function AlternatingSection() {
                   />
                 </div>
               </div>
+
             </div>
           );
         })}
@@ -53,3 +70,4 @@ export default function AlternatingSection() {
     </section>
   );
 }
+

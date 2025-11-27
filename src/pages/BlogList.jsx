@@ -42,7 +42,12 @@ export default function BlogList() {
   }, [currentPage, filteredBlogs]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10">
+    <div
+      className="max-w-7xl mx-auto px-4 py-10 
+                 bg-bg-main 
+                 text-text-primary 
+                 transition-colors"
+    >
       <h1 className="text-4xl font-bold mb-6">Latest Blogs</h1>
 
       {/* ---- SEARCH + CATEGORY ---- */}
@@ -57,12 +62,28 @@ export default function BlogList() {
             setSearch(e.target.value);
             setCurrentPage(1);
           }}
-          className="border px-4 py-2 rounded-lg w-full md:w-1/2"
+          className="
+            w-full md:w-1/2 px-4 py-2 rounded-lg 
+            bg-bg-surface
+            text-text-primary
+            border border-border
+            focus:outline-none 
+            focus:ring-2 focus:ring-accent
+            transition
+          "
         />
 
         {/* CATEGORY FILTER */}
         <select
-          className="border px-4 py-2 rounded-lg w-full md:w-1/3"
+          className="
+            w-full md:w-1/3 px-4 py-2 rounded-lg 
+            bg-bg-surface
+            text-text-primary
+            border border-border
+            focus:outline-none 
+            focus:ring-2 focus:ring-accent
+            transition
+          "
           value={selectedCategory}
           onChange={(e) => {
             setSelectedCategory(e.target.value);
@@ -83,7 +104,13 @@ export default function BlogList() {
           <Link
             to={`/blogs/${blog.id}`}
             key={blog.id}
-            className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-xl transition"
+            className="
+              rounded-xl overflow-hidden shadow-md 
+              bg-bg-surface 
+              border border-border
+              hover:shadow-lg hover:-translate-y-1 
+              transition
+            "
           >
             <img
               src={blog.image}
@@ -92,17 +119,24 @@ export default function BlogList() {
             />
 
             <div className="p-5">
-              <h2 className="text-xl font-semibold">{blog.title}</h2>
-              <p className="text-gray-600 text-sm mt-2">{blog.subtitle}</p>
+              <h2 className="text-xl font-semibold text-text-primary">
+                {blog.title}
+              </h2>
+
+              <p className="text-text-secondary text-sm mt-2">
+                {blog.subtitle}
+              </p>
 
               <div className="flex items-center gap-3 mt-4">
                 <img
                   src={blog.authorAvatar}
-                  className="w-10 h-10 rounded-full"
+                  className="w-10 h-10 rounded-full object-cover"
                 />
                 <div>
-                  <p className="font-medium">{blog.author}</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="font-medium text-text-primary">
+                    {blog.author}
+                  </p>
+                  <p className="text-xs text-text-secondary">
                     {blog.date} • {blog.readTime}
                   </p>
                 </div>
@@ -116,7 +150,12 @@ export default function BlogList() {
                 {blog.tags.map((tag, idx) => (
                   <span
                     key={idx}
-                    className="bg-gray-200 px-2 py-1 rounded-md text-xs"
+                    className="
+                      px-2 py-1 rounded-md text-xs
+                      bg-bg-main
+                      text-text-secondary
+                      border border-border
+                    "
                   >
                     {tag}
                   </span>
@@ -133,9 +172,14 @@ export default function BlogList() {
         <button
           disabled={currentPage === 1}
           onClick={() => setCurrentPage((p) => p - 1)}
-          className={`px-4 py-2 rounded-lg border ${
-            currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
-          }`}
+          className="
+            px-4 py-2 rounded-lg border border-border
+            bg-bg-surface
+            text-text-primary
+            disabled:opacity-50 disabled:cursor-not-allowed
+            hover:bg-bg-main
+            transition
+          "
         >
           Prev
         </button>
@@ -144,11 +188,16 @@ export default function BlogList() {
         {Array.from({ length: totalPages }, (_, i) => (
           <button
             key={i}
-            className={`px-4 py-2 rounded-lg border ${
-              currentPage === i + 1
-                ? "bg-blue-600 text-white"
-                : "bg-white"
-            }`}
+            className={`
+              px-4 py-2 rounded-lg border 
+              border-border
+              transition
+              ${
+                currentPage === i + 1
+                  ? "bg-accent text-white"
+                  : "bg-bg-surface text-text-primary hover:bg-bg-main"
+              }
+            `}
             onClick={() => setCurrentPage(i + 1)}
           >
             {i + 1}
@@ -158,11 +207,14 @@ export default function BlogList() {
         <button
           disabled={currentPage === totalPages}
           onClick={() => setCurrentPage((p) => p + 1)}
-          className={`px-4 py-2 rounded-lg border ${
-            currentPage === totalPages
-              ? "opacity-50 cursor-not-allowed"
-              : ""
-          }`}
+          className="
+            px-4 py-2 rounded-lg border border-border
+            bg-bg-surface
+            text-text-primary
+            disabled:opacity-50 disabled:cursor-not-allowed
+            hover:bg-bg-main
+            transition
+          "
         >
           Next
         </button>

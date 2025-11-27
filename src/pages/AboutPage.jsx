@@ -4,78 +4,149 @@ export default function AboutPage() {
   const { about } = aboutData;
 
   return (
-    <div className="w-full min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="w-full bg-gray-50 py-16">
+    <div
+      className="
+        w-full min-h-screen
+        bg-bg-main
+        text-text-primary
+        transition-colors
+      "
+    >
+      {/* --------------------
+          HERO SECTION
+      --------------------- */}
+      <section
+        className="
+          w-full py-16
+          bg-bg-surface
+          border-b border-border
+        "
+      >
         <div className="max-w-5xl mx-auto px-6">
-          <h1 className="text-4xl font-bold mb-4">{about.title}</h1>
-          <p className="text-lg text-gray-600">{about.subtitle}</p>
+          <h1 className="text-4xl font-bold mb-4">
+            {about.title}
+          </h1>
 
-          <img
-            src={about.image}
-            alt="hero"
-            className="w-full h-[350px] object-cover rounded-xl mt-8 shadow"
-          />
+          <p className="text-lg text-text-secondary">
+            {about.subtitle}
+          </p>
+
+          <div
+            className="
+              mt-8 rounded-xl overflow-hidden shadow-lg
+              bg-bg-main
+              border border-border
+            "
+          >
+            <img
+              src={about.image}
+              alt="hero"
+              className="w-full h-[350px] object-cover"
+            />
+          </div>
         </div>
       </section>
 
-      {/* All Sections */}
+      {/* --------------------
+          CONTENT SECTIONS
+      --------------------- */}
       <div className="max-w-5xl mx-auto px-6 py-12 space-y-16">
         {about.sections.map((section) => (
           <div key={section.id} className="space-y-6">
-            {/* Section Title */}
-            <h2 className="text-3xl font-semibold">{section.title}</h2>
 
-            {/* Section Content Blocks */}
+            {/* Section Title */}
+            <h2 className="text-3xl font-semibold text-text-primary">
+              {section.title}
+            </h2>
+
             <div className="space-y-6">
               {section.contentBlocks.map((block, index) => {
                 switch (block.type) {
+                  // ========================
+                  // HEADING
+                  // ========================
                   case "heading":
                     return (
                       <h3
                         key={index}
-                        className="text-2xl font-semibold text-gray-800"
+                        className="
+                          text-2xl font-semibold
+                          text-text-primary
+                        "
                       >
                         {block.text}
                       </h3>
                     );
 
+                  // ========================
+                  // PARAGRAPH TEXT
+                  // ========================
                   case "text":
                     return (
-                      <p key={index} className="text-gray-700 leading-relaxed">
+                      <p
+                        key={index}
+                        className="
+                          leading-relaxed
+                          text-text-secondary
+                        "
+                      >
                         {block.text}
                       </p>
                     );
 
+                  // ========================
+                  // IMAGE
+                  // ========================
                   case "image":
                     return (
-                      <img
+                      <div
                         key={index}
-                        src={block.src}
-                        alt={block.alt}
-                        className="w-full rounded-lg shadow-md object-cover"
-                      />
+                        className="
+                          rounded-lg overflow-hidden shadow
+                          bg-bg-surface
+                          border border-border
+                        "
+                      >
+                        <img
+                          src={block.src}
+                          alt={block.alt}
+                          className="w-full object-cover"
+                        />
+                      </div>
                     );
 
+                  // ========================
+                  // LIST
+                  // ========================
                   case "list":
                     return (
-                      <ul key={index} className="list-disc pl-6 space-y-2">
+                      <ul
+                        key={index}
+                        className="
+                          list-disc pl-6 space-y-2
+                          text-text-secondary
+                        "
+                      >
                         {block.items.map((item, i) => (
-                          <li
-                            key={i}
-                            className="text-gray-700 leading-relaxed"
-                          >
+                          <li key={i} className="leading-relaxed">
                             {item}
                           </li>
                         ))}
                       </ul>
                     );
 
+                  // ========================
+                  // QUOTE
+                  // ========================
                   case "quote":
                     return (
                       <blockquote
                         key={index}
-                        className="border-l-4 border-blue-500 pl-4 italic text-gray-600"
+                        className="
+                          border-l-4 pl-4 italic
+                          text-text-secondary
+                          border-accent
+                        "
                       >
                         {block.text}
                       </blockquote>
