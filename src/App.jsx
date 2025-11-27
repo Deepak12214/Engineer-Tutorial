@@ -6,9 +6,18 @@ import BlogDetails from "./pages/BlogDetails";
 import BlogList from "./pages/BlogList";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 
 function App() {
+  const theme = useSelector((state) => state.theme.mode);
+
+  useEffect(() => {
+    document.documentElement.classList.remove("dark", "light");
+    document.documentElement.classList.add(theme);
+  }, [theme]);
+
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-white">
