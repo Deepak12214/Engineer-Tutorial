@@ -8,6 +8,7 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   const theme = useSelector((state) => state.theme.mode);
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <BrowserRouter>
+    <ScrollToTop/>
       <div
         className="
           min-h-screen
