@@ -76,17 +76,12 @@ export default function Header() {
                 src={site.logo}
                 alt="logo"
                 className="h-30 rounded-md object-cover dark:brightness-0 dark:invert"
-                onError={(e) => {
-                  e.currentTarget.src = "/fallback-logo.png";
-                }}
               />
             ) : (
-              <span className="text-3xl">🎯</span>
-            )}
-
-            <span className="hidden sm:block text-xl font-bold text-text-primary">
+              <span className="text-xl font-bold text-text-primary">
               {site.title}
             </span>
+            )}
           </Link>
 
           {/* Desktop Nav */}
