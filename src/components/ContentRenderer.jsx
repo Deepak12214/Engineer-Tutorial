@@ -1,5 +1,114 @@
+// ================================
 import { FiCopy, FiCheck, FiZoomIn, FiX } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+function parseInline(text) {
+  if (!text) return text;
+
+  const tokens = [];
+  let i = 0;
+
+  while (i < text.length) {
+    // ***bold+italic***
+    if (text.startsWith('***', i)) {
+      const end = text.indexOf('***', i + 3);
+      if (end !== -1) {
+        tokens.push(
+          <span key={i} className="font-bold italic text-text-primary">
+            {text.slice(i + 3, end)}
+          </span>
+        );
+        i = end + 3;
+        continue;
+      }
+    }
+
+    // **bold**
+    if (text.startsWith('**', i)) {
+      const end = text.indexOf('**', i + 2);
+      if (end !== -1) {
+        tokens.push(
+          <strong key={i} className="text-text-primary">
+            {text.slice(i + 2, end)}
+          </strong>
+        );
+        i = end + 2;
+        continue;
+      }
+    }
+
+    // _italic_
+    if (text.startsWith('_', i)) {
+      const end = text.indexOf('_', i + 1);
+      if (end !== -1) {
+        tokens.push(
+          <em key={i} className="text-text-primary italic">
+            {text.slice(i + 1, end)}
+          </em>
+        );
+        i = end + 1;
+        continue;
+      }
+    }
+
+    // ~~strike~~
+    if (text.startsWith('~~', i)) {
+      const end = text.indexOf('~~', i + 2);
+      if (end !== -1) {
+        tokens.push(
+          <span key={i} className="line-through text-red-500">
+            {text.slice(i + 2, end)}
+          </span>
+        );
+        i = end + 2;
+        continue;
+      }
+    }
+
+    // External & Internal [[text|url]]
+    if (text.startsWith("[[", i)) {
+      const end = text.indexOf("]]", i + 2);
+      if (end !== -1) {
+        const inside = text.slice(i + 2, end);
+        const [label, href] = inside.split("|");
+
+        const isExternal = href.startsWith("http");
+
+        tokens.push(
+          isExternal ? (
+            <a
+              key={i}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent hover:text-accent-hover underline"
+            >
+              {label}
+            </a>
+          ) : (
+            <Link
+              key={i}
+              to={href}
+              className="text-accent hover:text-accent-hover underline"
+            >
+              {label}
+            </Link>
+          )
+        );
+
+        i = end + 2;
+        continue;
+      }
+    }
+
+    // Default: push normal character
+    tokens.push(text[i]);
+    i++;
+  }
+
+  return tokens;
+}
+
 
 function CodeBlock({ language, content }) {
   const [copied, setCopied] = useState(false);
@@ -25,6 +134,7 @@ function CodeBlock({ language, content }) {
   );
 }
 
+
 export default function ContentRenderer({ blocks = [], content = {} }) {
   const [modalImage, setModalImage] = useState(null);
 
@@ -38,7 +148,7 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
 
   const openImage = (img) => setModalImage(img);
 
-  // block renderer
+
   const renderBlock = (block, idx) => {
     // BADGE
     if (block.badge) {
@@ -55,8 +165,8 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
           className={`p-4 rounded-lg border shadow-sm my-6 ${color} 
             dark:bg-bg-surface dark:text-text-primary dark:border-border`}
         >
-          <div className="font-medium">{block.title || "Note"}</div>
-          <div className="text-sm mt-1">{block.text}</div>
+          <div className="font-medium">{parseInline(block.title || "Note")}</div>
+          <div className="text-sm mt-1">{parseInline(block.text)}</div>
         </div>
       );
     }
@@ -64,11 +174,8 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
     // HEADING
     if (block.heading) {
       return (
-        <h2
-          key={idx}
-          className="text-3xl font-bold my-6 text-text-primary"
-        >
-          {block.heading}
+        <h2 key={idx} className="text-3xl font-bold my-6 text-text-primary">
+          {parseInline(block.heading)}
         </h2>
       );
     }
@@ -76,11 +183,8 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
     // TEXT
     if (block.text) {
       return (
-        <p
-          key={idx}
-          className="text-lg leading-relaxed my-4 text-text-secondary"
-        >
-          {block.text}
+        <p key={idx} className="text-lg leading-relaxed my-4 text-text-secondary">
+          {parseInline(block.text)}
         </p>
       );
     }
@@ -104,7 +208,7 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
     }
 
     // LIST
-    if (block.list && Array.isArray(block.list)) {
+    if (block.list) {
       return (
         <ul key={idx} className="mb-4 space-y-2">
           {block.list.map((item, i) => (
@@ -116,15 +220,15 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
               >
                 <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3-10l-4 4-2-2" />
               </svg>
-              <span className="text-text-primary">{item}</span>
+              <span className="text-text-primary">{parseInline(item)}</span>
             </li>
           ))}
         </ul>
       );
     }
 
-    // CODE BLOCK
-    if (block.code && Array.isArray(block.code)) {
+    // MULTIPLE CODE BLOCKS
+    if (block.code) {
       return block.code.map((c, i) => (
         <CodeBlock key={i} language={c.language} content={c.content} />
       ));
@@ -133,10 +237,11 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
     return null;
   };
 
+
+
   return (
     <>
       <div className="max-w-4xl">
-        {/* parent content points */}
         {content.points && (
           <ul className="mb-6 space-y-2">
             {content.points.map((p, i) => (
@@ -148,7 +253,7 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
                 >
                   <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3-10l-4 4-2-2" />
                 </svg>
-                <span className="text-text-primary">{p}</span>
+                <span className="text-text-primary">{parseInline(p)}</span>
               </li>
             ))}
           </ul>
@@ -157,7 +262,9 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
         {blocks.map(renderBlock)}
       </div>
 
-      {/* MODAL */}
+
+
+      {/* FULLSCREEN IMAGE MODAL */}
       {modalImage && (
         <div
           onClick={() => setModalImage(null)}
