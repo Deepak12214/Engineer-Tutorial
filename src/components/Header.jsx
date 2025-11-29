@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../store/themeSlice";
 import siteData from "../data/site.json";
@@ -7,6 +7,7 @@ import coursesData from "../data/courses.json";
 import { FiSun, FiMoon } from "react-icons/fi";
 
 export default function Header() {
+  const navigate = useNavigate();
   const theme = useSelector((state) => state.theme.mode);
   const dispatch = useDispatch();
 
@@ -173,7 +174,7 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-4">
             <button
               onClick={() => dispatch(toggleTheme())}
-              className="
+              className=" cursor-pointer
     ml-4 flex items-center justify-center
     w-10 h-10 rounded-full
     bg-bg-surface
@@ -189,7 +190,7 @@ export default function Header() {
               )}
             </button>
 
-            <button className="px-6 py-2 rounded-lg bg-accent hover:bg-accent-hover text-white font-medium transition-colors shadow-sm">
+            <button onClick={()=> navigate("/learn/system-design/introduction/01-what-is-system-design")} className="cursor-pointer px-6 py-2 rounded-lg bg-accent hover:bg-accent-hover text-white font-medium transition-colors shadow-sm">
               {site.cta.primary}
             </button>
           </div>
@@ -286,10 +287,7 @@ export default function Header() {
             })}
 
             {/* Mobile CTA */}
-            <button className="w-full px-4 py-2 rounded-md border border-accent text-accent">
-              {site.cta.secondary}
-            </button>
-            <button className="w-full px-4 py-2 rounded-md bg-accent text-white">
+            <button onClick={()=> navigate("/learn/system-design/introduction/01-what-is-system-design")}  className="w-full px-4 py-2 rounded-md bg-accent text-white">
               {site.cta.primary}
             </button>
 
