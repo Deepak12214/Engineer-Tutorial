@@ -1,0 +1,45 @@
+{
+  "title": "WHAT YOU’LL LEARN",
+  "items": [
+    {
+      "label": "System Design",
+      "icon": "/icons/system-design-logo.png",
+        "path": "/learn/system-design/introduction/01-what-is-system-design"
+    },
+    {
+      "label": "Interview",
+      "icon": "/icons/interview-logo.png",
+        "path": "/learn/system-design/introduction/01-what-is-system-design"
+    },
+    {
+      "label": "Kafka",
+      "icon": "/icons/kafka-logo.png",
+        "path": "/learn/system-design/introduction/01-what-is-system-design"
+    },
+    {
+      "label": "Spark",
+      "icon": "/icons/spark-logo.png",
+        "path": "/learn/system-design/introduction/01-what-is-system-design"
+    },
+    {
+      "label": "LLD",
+      "icon": "/icons/LLD-logo.png",
+        "path": "/learn/system-design/introduction/01-what-is-system-design"
+    },
+    {
+      "label": "HLD",
+      "icon": "/icons/HLD-logo.png",
+        "path": "/learn/system-design/introduction/01-what-is-system-design"
+    },
+    {
+      "label": "AWS",
+      "icon": "/icons/amazon-logo.png",
+        "path": "/learn/system-design/introduction/01-what-is-system-design"
+    },
+    {
+      "label": "GenAI",
+      "icon": "/icons/GenAi-logo.png",
+        "path": "/learn/system-design/introduction/01-what-is-system-design"
+    }
+  ]
+}

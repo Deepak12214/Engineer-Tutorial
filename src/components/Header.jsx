@@ -86,7 +86,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-8 ">
             {site.headerLinks.map((link) => {
               const isDropdown = link.type === "dropdown";
               const label = link.label;
@@ -94,7 +94,7 @@ export default function Header() {
               return (
                 <div
                   key={label}
-                  className="relative"
+                  className="relative "
                   onMouseEnter={() => isDropdown && handleMouseEnter(label)}
                   onMouseLeave={() => isDropdown && handleMouseLeave(label)}
                 >
@@ -106,7 +106,7 @@ export default function Header() {
                         aria-expanded={openDropdown === label}
                         onFocus={() => handleFocus(label)}
                         onBlur={() => handleBlur(label)}
-                        className="flex items-center space-x-1 font-medium text-text-primary dark:text-text-primary hover:text-accent transition-colors"
+                        className="cursor-pointer flex items-center space-x-1 font-medium text-text-primary dark:text-text-primary hover:text-accent transition-colors"
                       >
                         <span>{label}</span>
                         <svg

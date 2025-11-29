@@ -3,13 +3,15 @@
   "highlight": "The Right Way",
   "subtitle": "Industry-expert lessons, hands-on projects, and interview-ready content to accelerate your engineering career.",
   "primaryCTA": "Start Learning Free",
+  "primaryCTAURL" : "/learn/system-design/introduction/01-what-is-system-design",
   "secondaryCTA": "Watch Demo",
+  "secondaryCTAURL" : "learn/system-design/introduction/01-what-is-system-design",
   "trustedLine": "Trusted by 10,000+ Learners Worldwide",
   "supportLine": "Built by Engineers from",
   "brands": [
-    "/images/meta.svg",
-    "/images/google.svg",
-    "/images/amazon.svg"
+    "meta.png",
+    "google.png",
+    "amazon.png"
   ],
   "imageUrl": "/Hero-image.png"
 }

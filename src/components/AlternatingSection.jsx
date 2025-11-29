@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import data from "../data/alternating.json";
 
 export default function AlternatingSection() {
@@ -27,8 +28,8 @@ export default function AlternatingSection() {
                 </p>
 
                 {sec.cta && (
-                  <a
-                    href={sec.cta.href}
+                  <Link
+                    to={sec.cta.href}
                     className="
                       inline-flex items-center gap-2
                       px-5 py-3 rounded-lg font-medium
@@ -39,7 +40,7 @@ export default function AlternatingSection() {
                     "
                   >
                     {sec.cta.label}
-                  </a>
+                  </Link>
                 )}
               </div>
 
@@ -47,17 +48,12 @@ export default function AlternatingSection() {
               <div className="flex-1">
                 <div
                   className="
-                    rounded-2xl overflow-hidden
-                    shadow-xl 
-                    bg-bg-surface
-                    border border-border
-                    transition-colors
                   "
                 >
                   <img
                     src={sec.imageUrl}
                     alt={sec.title}
-                    className="w-full h-80 object-cover"
+                    className="w-full h-72 lg:h-96 object-contain"
                   />
                 </div>
               </div>
