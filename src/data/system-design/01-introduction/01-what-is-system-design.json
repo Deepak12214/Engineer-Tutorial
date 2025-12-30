@@ -1,0 +1,173 @@
+{
+  "id": "system-design-introduction",
+  "heading": "SYSTEM DESIGN",
+  "blocks": [
+    {
+      "text": "In **technical terms, system design** is:"
+    },
+    {
+      "text": "**The process of defining the architecture, components, interfaces, and data flow of a software system to meet functional and non-functional requirements at scale.**"
+    },
+    {
+      "text": "In simple words:\n 👉 System design is about deciding **how a system will work, what parts it will have, and how those parts will connect with each other.**"
+    },
+
+    {
+      "smallHeading": "Easy example 🌟"
+    },
+    {
+      "text": "Think of a **school:**"
+    },
+    {
+      "list": [
+        "Classrooms",
+        "Teachers",
+        "Students",
+        "Timetable"
+      ]
+    },
+    {
+      "text": "Planning all this so the school runs smoothly is like **system design.**"
+    },
+    {
+      "smallHeading": "One-line definition"
+    },
+    {
+      "text": "**System design is the process of planning and organizing the components of a system so that it functions efficiently.**"
+    },
+    {
+      "gap": " "
+    },
+    {
+      "text": "Here are the **kinds / types of system design written in simple text form (not a table):**"
+    },
+    {
+  "line": true
+},
+    {
+      "mediumHeading": "1. High-Level Design (HLD)"
+    },
+    {
+      "text": "This type of system design shows the **overall architecture** of the system. It explains the main components, how they are connected, and how data flows between them."
+    },
+        {
+  "line": true
+},
+    {
+      "mediumHeading": "2. Low-Level Design (LLD)"
+    },
+    {
+      "text": "This type focuses on the **internal details** of the system. It includes class design, methods, APIs, database tables, and detailed logic used by developers."
+    },
+        {
+  "line": true
+},
+    {
+      "mediumHeading": "3. Monolithic System Design"
+    },
+    {
+      "text": "In this design, the **entire system is built as a single unit.** All features are tightly connected and run together."
+    },
+        {
+  "line": true
+},
+    {
+      "mediumHeading": "4. Microservices System Design"
+    },
+    {
+      "text": "The system is divided into **small, independent services,** where each service performs a specific task and communicates with others using APIs."
+    },
+        {
+  "line": true
+},
+    {
+      "mediumHeading": "5. Client–Server System Design"
+    },
+    {
+      "text": "In this design, the **client sends requests** and the **server responds.** This is commonly used in web and mobile applications."
+    },
+            {
+  "line": true
+},
+    {
+      "mediumHeading": "6. Event-Driven System Design"
+    },
+    {
+      "text": "The system works based on **events or messages.** Components react when an event occurs, such as sending notifications."
+    },
+            {
+  "line": true
+},
+    {
+      "mediumHeading": "7. Cloud-Based System Design"
+    },
+    {
+      "text": "The system is hosted on cloud platforms like AWS, Azure, or Google Cloud, allowing easy scaling and flexibility."
+    },
+    {
+      "image": {
+        "src": "/system-desgin/cloud.png",
+        "alt": "Cloud-Based System Design",
+        "caption": ""
+      }
+    },
+            {
+  "line": true
+},
+    {
+      "heading": "Difference Between High-Level Design and Low-Level Design"
+    },
+    {
+      "table": {
+        "headers": [
+          "**Basis**",
+          "**High-Level Design (HLD)**",
+          "**Low-Level Design (LLD)**"
+        ],
+        "rows": [
+          [
+            "**Meaning**",
+            "Overall structure of the system",
+            "Detailed internal design"
+          ],
+          [
+            "**Focus**",
+            "What components are needed",
+            "How components are built"
+          ],
+          [
+            "**Level of Detail**",
+            "Abstract / overview",
+            "Very detailed"
+          ],
+          [
+            "**Main Content**",
+            "Architecture, modules, data flow",
+            "Classes, methods, APIs"
+          ],
+          [
+            "**Design Stage**",
+            "Early stage of development",
+            "After HLD"
+          ],
+          [
+            "**Audience**",
+            "Architects, managers, clients",
+            "Developers"
+          ],
+          [
+            "**Documentation**",
+            "System architecture diagram",
+            "Class & sequence diagrams"
+          ]
+        ]
+      }
+    },
+    {
+      "smallHeading": "Conclusion on System Design"
+    },
+    {
+      "text": "System design is the **foundation of building successful software systems.** It defines how different components of a system are structured, how they communicate, and how the system meets both **functional** and **non-functional requirements** such as performance, scalability, security, and reliability. A well-designed system ensures smooth operation, easy maintenance, and the ability to grow with increasing users and data. Overall, system design acts as a **blueprint** that guides developers in creating efficient, robust, and scalable technology solutions."
+    }
+  ]
+}

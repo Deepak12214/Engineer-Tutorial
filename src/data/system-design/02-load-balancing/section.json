@@ -3,7 +3,6 @@
   "title": "Load Balancing",
   "description": "Basics of load balancing techniques.",
   "topics": [
-    { "id": "what-is-load-balancing", "title": "What is Load Balancing?" },
-    { "id": "types", "title": "Types of Load Balancers" }
+    { "id": "what-is-load-balancing", "title": "What is Load Balancing?" }
   ]
 }

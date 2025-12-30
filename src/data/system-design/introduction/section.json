@@ -1,9 +1,0 @@
-{
-  "id": "introduction",
-  "title": "Introduction to System Design",
-  "description": "Basics of system design principles.",
-  "topics": [
-    { "id": "what-is-system-design", "title": "What is System Design?" },
-    { "id": "why-important", "title": "Why System Design is Important?" }
-  ]
-}

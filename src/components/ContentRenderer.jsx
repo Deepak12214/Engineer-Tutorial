@@ -9,6 +9,12 @@ function parseInline(text) {
   let i = 0;
 
   while (i < text.length) {
+      // 🔥 HANDLE NEW LINE
+  if (text[i] === "\n") {
+    tokens.push(<br key={`br-${i}`} />);
+    i++;
+    continue;
+  }
     // ***bold+italic***
     if (text.startsWith('***', i)) {
       const end = text.indexOf('***', i + 3);
@@ -22,6 +28,7 @@ function parseInline(text) {
         continue;
       }
     }
+    
 
     // **bold**
     if (text.startsWith('**', i)) {
@@ -170,6 +177,13 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
         </div>
       );
     }
+        if (block.gap) {
+      return (
+        <h2 key={idx} className=" my-14">
+          {parseInline(block.gap)}
+        </h2>
+      );
+    }
 
     // HEADING
     if (block.heading) {
@@ -179,22 +193,81 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
         </h2>
       );
     }
-
+    if (block.smallHeading) {
+      return (
+        <h2 key={idx} className="text-xl font-bold mt-4 mb-1 text-text-primary">
+          {parseInline(block.smallHeading)}
+        </h2>
+      );
+    }
+    if (block.mediumHeading) {
+      return (
+        <h2 key={idx} className="text-2xl font-bold mt-4 mb-1 text-text-primary">
+          {parseInline(block.mediumHeading)}
+        </h2>
+      );
+    }
     // TEXT
     if (block.text) {
       return (
-        <p key={idx} className="text-lg leading-relaxed my-4 text-text-secondary">
+        <p key={idx} className="text-lg leading-relaxed my-1  text-text-secondary">
           {parseInline(block.text)}
         </p>
       );
     }
+    // TABLE
+if (block.table) {
+  const { headers, rows } = block.table;
+
+  return (
+    <div key={idx} className="my-8 overflow-x-auto">
+      <table className="w-full border-collapse border border-border rounded-lg overflow-hidden">
+        <thead className="bg-bg-surface">
+          <tr>
+            {headers.map((h, i) => (
+              <th
+                key={i}
+                className="border border-border px-4 py-3 text-left text-text-primary font-semibold"
+              >
+                {parseInline(h)}
+              </th>
+            ))}
+          </tr>
+        </thead>
+
+        <tbody>
+          {rows.map((row, rIdx) => (
+            <tr key={rIdx} className="odd:bg-bg-main even:bg-bg-surface">
+              {row.map((cell, cIdx) => (
+                <td
+                  key={cIdx}
+                  className="border border-border px-4 py-3 text-text-secondary align-top"
+                >
+                  {parseInline(cell)}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+if (block.line) {
+  return (
+    <div
+      key={idx}
+      className="my-8 border-t border-2 border-border"
+    />
+  );
+} 
 
     // IMAGE
     if (block.image) {
       return (
         <div
           key={idx}
-          className="my-6 overflow-hidden rounded-xl shadow-lg relative bg-bg-surface border border-border transition-colors"
+          className="my-6 mb-8 overflow-hidden rounded-xl shadow-lg relative bg-bg-surface border border-border transition-colors"
         >
           <img src={block.image.src} alt={block.image.alt} className="w-full h-auto" />
           <button
@@ -263,38 +336,42 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
       </div>
 
 
+{modalImage && (
+  <div
+    onClick={() => setModalImage(null)}
+    className="fixed inset-0 z-50 bg-black/80"
+  >
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className="relative w-full h-[100svh] p-3"
+    >
+      {/* Close */}
+      <button
+        onClick={() => setModalImage(null)}
+        className="absolute top-3 right-3 z-20 bg-bg-surface border border-border text-text-primary rounded-full p-2 shadow"
+      >
+        <FiX />
+      </button>
 
-      {/* FULLSCREEN IMAGE MODAL */}
-      {modalImage && (
-        <div
-          onClick={() => setModalImage(null)}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="relative max-w-6xl w-full max-h-[90vh]"
-          >
-            <button
-              onClick={() => setModalImage(null)}
-              className="absolute top-3 right-3 bg-bg-surface border border-border text-text-primary rounded-full p-2 shadow"
-            >
-              <FiX />
-            </button>
+      {/* IMAGE CONTAINER */}
+      <div className="w-full h-full overflow-auto flex items-center justify-center">
+        <img
+          src={modalImage.src}
+          alt={modalImage.alt}
+          className="max-h-full w-auto object-contain rounded-lg"
+        />
+      </div>
 
-            <img
-              src={modalImage.src}
-              alt={modalImage.alt}
-              className="w-full h-full object-contain rounded-md"
-            />
-
-            {modalImage.caption && (
-              <div className="text-center text-sm mt-2 text-gray-200">
-                {modalImage.caption}
-              </div>
-            )}
-          </div>
+      {modalImage.caption && (
+        <div className="text-center text-sm mt-2 text-gray-200">
+          {modalImage.caption}
         </div>
       )}
+    </div>
+  </div>
+)}
+
+
     </>
   );
 }

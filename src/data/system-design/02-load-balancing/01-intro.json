@@ -1,0 +1,207 @@
+{
+  "id": "load-balancer-introduction",
+  "heading": "LOAD BALANCER",
+  "blocks": [
+    {
+      "text": "**A load balancer is a device or software** that acts as a **\"traffic cop,\" distributing incoming network traffic across multiple servers (a server farm)** to ensure **no single server gets overloaded**, thus improving **application performance, reliability, and availability**. It uses **algorithms (like round robin or least connections)** to intelligently route requests, performs **health checks to avoid unhealthy servers**, and can be **hardware, software, or cloud-based**, essential for handling **high traffic in modern applications**."
+    },
+    {
+      "gap": " "
+    },
+    {
+      "text": "**◈ A load balancer is a tool or system that distributes incoming traffic (users’ requests) across multiple servers so that no single server gets overloaded.**"
+    },
+    {
+      "smallHeading": "🚌 Real-Life Example: School Bus System"
+    },
+    {
+      "text": "Imagine a school has **100 students** going on a trip."
+    },
+    {
+      "text": "🚍 There are **4 buses**."
+    },
+    {
+      "mediumHeading": "Without Load Balancer:"
+    },
+    {
+      "list": [
+        "All students try to sit in **one bus**",
+        "**Bus becomes overcrowded** 😵",
+        "**Some students are left behind**"
+      ]
+    },
+    {
+      "mediumHeading": "With Load Balancer:"
+    },
+    {
+      "text": "A teacher stands at the gate (**👉 Load Balancer**)"
+    },
+    {
+      "list": [
+        "**25 students to Bus 1**",
+        "**25 students to Bus 2**",
+        "**25 students to Bus 3**",
+        "**25 students to Bus 4**"
+      ]
+    },
+    {
+      "text": "**All buses move smoothly** ✔️"
+    },
+    {
+      "text": "👉 **Teacher = Load Balancer**\n👉 **Students = User Requests**\n👉 **Buses = Servers**"
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "🍽️ Another Simple Example: Restaurant Counter"
+    },
+    {
+      "list": [
+        "Many customers come to a restaurant",
+        "**One waiter cannot handle all orders**",
+        "**A manager distributes customers to different waiters**"
+      ]
+    },
+    {
+      "text": "👉 **Manager = Load Balancer**\n👉 **Waiters = Servers**"
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "🚦 Traffic Police Example"
+    },
+    {
+      "list": [
+        "Traffic police at a junction",
+        "**Sends vehicles to different roads**",
+        "**Prevents traffic jam**"
+      ]
+    },
+    {
+      "text": "👉 **Traffic police = Load Balancer**"
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "One-line shot"
+    },
+    {
+      "text": "**A load balancer is like a traffic police or manager that distributes work evenly to avoid overload.**"
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "Why do we need a Load Balancer?"
+    },
+    {
+      "list": [
+        "To **handle many users at the same time**",
+        "To **increase website/app speed**",
+        "To **prevent server crash**",
+        "To **improve reliability and availability**"
+      ]
+    },
+    {
+      "text": "Example:\n If **1 server can handle 100 users** and **500 users come** → the server may crash.\n A load balancer sends users to **5 different servers instead.**"
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "How does a Load Balancer work?"
+    },
+    {
+      "list": [
+        "A user sends a request (open website/app)",
+        "The request first goes to the **Load Balancer**",
+        "Load balancer checks which server is **free or less busy**",
+        "It forwards the request to that server",
+        "**User gets the response smoothly** 👍"
+      ]
+    },
+    {
+      "image": {
+        "src": "/system-desgin/load-balance.png",
+        "alt": "Load Balancer in System Design",
+        "caption": ""
+      }
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Types of Load Balancers"
+    },
+    {
+      "smallHeading": "1️⃣ Hardware Load Balancer"
+    },
+    {
+      "list": [
+        "**Physical device**",
+        "**Very fast**",
+        "**Expensive**",
+        "Used by big companies"
+      ]
+    },
+    {
+      "smallHeading": "2️⃣ Software Load Balancer"
+    },
+    {
+      "list": [
+        "Installed as software",
+        "**Cheaper**",
+        "**Flexible**",
+        "**Example: NGINX, HAProxy**"
+      ]
+    },
+    {
+      "smallHeading": "3️⃣ Cloud Load Balancer"
+    },
+    {
+      "list": [
+        "Provided by cloud services",
+        "**Automatically scales**",
+        "**Example: AWS ELB, Google Cloud Load Balancer**"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "Load Balancing Algorithms (Simple)"
+    },
+    {
+      "list": [
+        "**Round Robin** – sends requests one by one to each server",
+        "**Least Connections** – sends to the server with least users",
+        "**IP Hashing** – same user goes to same server"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "Real-life Example"
+    },
+    {
+      "list": [
+        "When you open **YouTube, Amazon, or Google:**",
+        "**Millions of users access at the same time**",
+        "Load balancer ensures **fast loading** and **no downtime**"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "In one line"
+    },
+    {
+      "text": "**Load Balancer = A system that shares traffic among servers to keep apps fast and stable.**"
+    }
+  ]
+}
