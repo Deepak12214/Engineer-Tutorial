@@ -1,6 +1,6 @@
 {
   "id": "introduction",
-  "title": "Introduction to System Design",
+  "title": "System Design Concepts",
   "description": "Basics of system design principles.",
   "topics": [
     { "id": "what-is-system-design", "title": "What is System Design?" }

@@ -12,12 +12,7 @@
             "label": "System Design",
             "courseId": "system-design",
             "description": "Learn scalable system architecture"
-          },
-          {
-          "courseId": "dbms",
-          "label": "Database Management System",
-          "description": "Learn DBMS, SQL, transactions, indexing, and advanced topics"
-        }
+          }
         ]
       },
       {

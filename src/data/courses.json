@@ -8,15 +8,6 @@
       "defaultRoute": "/learn/system-design/introduction/01-what-is-system-design",
       "totalSections": 1,
       "totalTopics": 6
-    },
-    {
-      "id": "dbms",
-      "title": "Database Management System",
-      "description": "Learn DBMS concepts, SQL, transactions, indexing, and advanced database topics",
-      "icon": "💾",
-      "defaultRoute": "learn/dbms/01-introduction/01-what-is-dbms",
-      "totalSections": 4,
-      "totalTopics": 12
     }
   ]
 }

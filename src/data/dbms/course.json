@@ -1,9 +1,0 @@
-{
-  "id": "dbms",
-  "title": "Database Management Systems",
-  "description": "Comprehensive course on DBMS covering concepts, SQL, NoSQL, transactions, and advanced topics.",
-  "icon": "🗄️",
-  "defaultRoute": "/learn/dbms/introduction",
-  "totalSections": 4,
-  "totalTopics": 12
-}

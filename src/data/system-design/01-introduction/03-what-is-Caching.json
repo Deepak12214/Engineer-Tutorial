@@ -1,9 +1,9 @@
 {
   "id": "caching-introduction",
-  "heading": "CACHING",
+  "heading": "Caching",
   "blocks": [
     {
-      "text": "**Caching means storing frequently used data in a temporary, fast memory** so that it can be accessed quickly next time. **Caching is a concept that involves storing frequently accessed data in a location that is easily and quickly accessible.** The purpose of caching is to **improve the performance and efficiency of a system** by **reducing the amount of time it takes to access frequently accessed data.**"
+      "text": "Caching means storing frequently used data in a temporary, fast memory so that it can be accessed quickly next time. Caching is a concept that involves storing frequently accessed data in a location that is easily and quickly accessible. The purpose of caching is to **improve the performance and efficiency of a system** by reducing the amount of time it takes to access frequently accessed data."
     },
     {
       "image": {
@@ -30,13 +30,13 @@
       ]
     },
     {
-      "text": "👉 **Textbook = Server (slow to access)**\n 👉 **Brain memory = Cache (fast to access)**\n 👉 **Remembered answers = Cached data**"
+      "text": "👉 Textbook = Server (slow to access)\n 👉 Brain memory = Cache (fast to access)\n 👉 Remembered answers = Cached data"
     },
     {
       "line": true
     },
     {
-      "text": "**Now, why do we need caching, here are some quick points -**"
+      "text": "Now, why do we need caching? Here are some quick points:"
     },
     {
       "mediumHeading": "1️⃣ To Improve Speed and Performance"
@@ -45,11 +45,11 @@
       "list": [
         "Fetching data from a server or database takes time",
         "Cache stores data in fast memory",
-        "**Next request gets data instantly**"
+        "Next request gets data instantly"
       ]
     },
     {
-      "text": "📌 Example:\n **A website opens faster the second time because data comes from cache.**"
+      "text": "📌 Example:\n A website opens faster the second time because data comes from cache."
     },
     {
       "line": true
@@ -61,11 +61,11 @@
       "list": [
         "Without caching, every user request hits the server",
         "With caching, many requests are handled by cache",
-        "**Server gets fewer requests → works smoothly**"
+        "Server gets fewer requests and works smoothly"
       ]
     },
     {
-      "text": "**📌 Important for websites with millions of users**"
+      "text": "📌 Important for websites with millions of users"
     },
     {
       "line": true
@@ -76,8 +76,8 @@
     {
       "list": [
         "Database queries are costly",
-        "**Cache avoids repeated calculations and queries**",
-        "**Saves CPU, memory, and network bandwidth**"
+        "Cache avoids repeated calculations and queries",
+        "Saves CPU, memory, and network bandwidth"
       ]
     },
     {
@@ -88,12 +88,12 @@
     },
     {
       "list": [
-        "**Cache allows one server to handle many more users**",
+        "Cache allows one server to handle many more users",
         "Helps apps scale without adding many servers"
       ]
     },
     {
-      "text": "**📌 Used in apps like Google, YouTube, Amazon**"
+      "text": "📌 Used in apps like Google, YouTube, Amazon"
     },
     {
       "line": true
@@ -103,9 +103,9 @@
     },
     {
       "list": [
-        "**Faster page load**",
-        "**Less waiting time**",
-        "**Smooth browsing**"
+        "Faster page load",
+        "Less waiting time",
+        "Smooth browsing"
       ]
     },
     {
@@ -125,27 +125,27 @@
         ],
         "rows": [
           [
-            "**Improves speed and performance**",
+            "Improves speed and performance",
             "May show stale (old) data"
           ],
           [
-            "**Reduces server load**",
+            "Reduces server load",
             "Cache management is complex"
           ],
           [
-            "**Faster response time**",
+            "Faster response time",
             "Requires extra memory/storage"
           ],
           [
-            "**Saves bandwidth and resources**",
+            "Saves bandwidth and resources",
             "Data inconsistency can occur"
           ],
           [
-            "**Improves user experience**",
+            "Improves user experience",
             "First request (cache miss) is slow"
           ],
           [
-            "**Helps in scalability**",
+            "Helps in scalability",
             "Cache expiry issues"
           ]
         ]
@@ -175,12 +175,12 @@
     },
     {
       "list": [
-        "**Caching is used in web browsers** to store web pages, images, and files so that websites open faster when visited again.",
-        "**Websites and mobile applications use caching** to save frequently accessed data, which reduces server load and improves response time.",
-        "**Streaming platforms like YouTube and Netflix use caching** to store video data near users so that videos play smoothly without buffering.",
-        "**Operating systems use caching** to keep recently used files and programs in memory, which helps computers and mobile phones run faster.",
-        "**Databases use caching** to store query results so repeated requests can be answered quickly without accessing the database again.",
-        "**Cloud computing systems use caching** to improve scalability and reduce cost by handling large numbers of user requests efficiently."
+        "Caching is used in web browsers to store web pages, images, and files so that websites open faster when visited again.",
+        "Websites and mobile applications use caching to save frequently accessed data, which reduces server load and improves response time.",
+        "Streaming platforms like YouTube and Netflix use caching to store video data near users so that videos play smoothly without buffering.",
+        "Operating systems use caching to keep recently used files and programs in memory, which helps computers and mobile phones run faster.",
+        "Databases use caching to store query results so repeated requests can be answered quickly without accessing the database again.",
+        "Cloud computing systems use caching to improve scalability and reduce cost by handling large numbers of user requests efficiently."
       ]
     },
     {
@@ -190,7 +190,7 @@
       "heading": "TO CONCLUDE -"
     },
     {
-      "text": "**Caching plays an important role in improving the performance of modern computer systems.** It helps in **reducing response time**, **minimizing server load**, and **providing a smooth user experience.** By storing frequently used data in fast memory, caching makes applications faster and more efficient. Therefore, **caching is an essential technique used in websites, applications, and cloud systems today.**"
+      "text": "Caching plays an important role in improving the performance of modern computer systems. It helps in reducing response time, minimizing server load, and providing a smooth user experience. By storing frequently used data in fast memory, caching makes applications faster and more efficient. Therefore, **caching is an essential technique used in websites, applications, and cloud systems today.**"
     }
   ]
 }

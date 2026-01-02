@@ -1,540 +1,361 @@
 {
-  "blogs": [
+  "blogs": [ 
     {
-      "id": "scaling-instagram",
-      "title": "How Instagram Scales to Billions of Users",
-      "subtitle": "A deep look into architecture, storage, caching, and system reliability.",
-      "author": "Rohit Malhotra",
-      "authorAvatar": "https://source.unsplash.com/random/200x200?face,person",
-      "date": "2024-12-05",
-      "readTime": "12 min",
-      "tags": ["system-design", "scalability", "architecture"],
-      "rating": 4.9,
-      "image": "https://source.unsplash.com/random/1200x600?instagram,technology",
-      "contentBlocks": [
-        { "type": "heading", "text": "Introduction" },
+  "id": "caching-not-just-speed-strategy",
+  "title": "Caching Is Not Just About Speed — It’s About Strategy",
+  "subtitle": "How smart caching decisions enforce business rules, not just performance gains.",
+  "tags": ["system-design", "caching", "redis"],
+  "rating": 4.9,
+  "image": "/blogs/redisCover.jpeg",
+  "contentBlocks": [
+    {
+      "text": "We usually think of caching as a performance trick. Make things faster, reduce database load, improve response time. But some of the smartest uses of caching have **nothing to do with speed.**"
+    },
+    {
+      "text": "One of my favorite real-world examples comes from something we all do: **booking a movie ticket.**"
+    },
+    {
+      "text": "You open BookMyShow, select a movie, pick your seats, and proceed to payment.\n For the next few minutes, those seats are magically unavailable to everyone else."
+    },
+    {
+      "text": "Have you ever wondered:\n \n **How does BookMyShow lock your seat without permanently booking it?**"
+    },
+    {
+      "text": "The answer is a beautiful lesson in **system design using caching.**"
+    },
+    {
+  "line": true
+},
+    {
+      "heading": "The Problem: Seats Are Limited, Users Are Not"
+    },
+    {
+      "text": "A movie theater might have 150 seats.\n At peak time, thousands of users are trying to book them simultaneously."
+    },
+    {
+      "text": "If every seat selection resulted in an immediate database write, the system would face:"
+    },
+    {
+      "list": [
+        "Heavy database contention",
+        "Complex rollbacks if payments fail",
+        "Poor user experience during high traffic"
+      ]
+    },
+    {
+      "text": "Worse, if a user abandons payment, the seat could remain stuck forever unless manually handled."
+    },
+    {
+      "text": "So how do you **temporarily reserve** a seat without committing it?"
+    },
+    {
+  "line": true
+},
+    {
+      "heading": "The Strategy: Cache First, Commit Later"
+    },
+    {
+      "type": "text",
+      "text": "Here’s what actually happens behind the scenes."
+    },
+    {
+      "text": "When you select a seat, the system **does not immediately write to the database.**\n Instead, it takes a smarter route."
+    },
+    {
+  "line": true
+},
+    {
+      "heading": "Step 1: You Select a Seat"
+    },
+    {
+      "text": "You click on Seat A10. At this point:"
+    },
+    {
+      "list": [
+        "The seat is not yet sold",
+        "The payment is not yet successful"
+      ]
+    },
+    {
+      "text" :"But the system still needs to prevent others from booking it"
+    },
+    {
+  "line": true
+},
+    {
+      "heading": "Step 2: Temporary Lock Using Cache (Redis)"
+    },
+    {
+      "text": "Instead of touching the database, the system stores this information in **Redis**, an in-memory cache."
+    },
+    {
+      "text": "seat:A10:show:123 → locked_by_user_456 (TTL = 5 minutes)"
+    },
+    {
+      "text": "This cache entry acts as a **temporary lock:**"
+    },
+    {
+      "list": [
+        "It’s fast",
+        "It’s lightweight",
+        "It automatically expires"
+      ]
+    },
+    {
+      "text": "The **TTL (Time-To-Live)** is crucial here. If the user doesn’t complete payment within a few minutes, Redis automatically deletes the key."
+    },
+    {
+      "text": "No cleanup job. No cron. No manual intervention."
+    },
+    {
+  "line": true
+},
+    {
+      "heading": "Step 3: Payment Outcome Decides the Fate"
+    },
+    {
+      "text": "Now there are only two possible outcomes."
+    },
+    
+    {
+      "smallHeading": "Case 1: Payment Succeeds ✅"
+    },
         {
-          "type": "text",
-          "text": "Instagram handles billions of photo uploads, likes, comments, and real-time interactions."
-        },
+      "text": "Once payment is confirmed :"
+    },
+    {
+      "list": [
+        "The system writes the seat booking permanently to the database",
+        "The Redis cache entry is deleted or ignored",
+        "The seat is officially sold"
+      ]
+    },
+    {
+      "smallHeading": "Case 2: Payment Fails or Times Out ❌"
+    },
+            {
+      "text": "if payment fails or the user closes the app :"
+    },
+    {
+      "list": [
+        "Nothing is written to the database",
+        "Redis TTL expires",
+        "The seat becomes available again automatically"
+      ]
+    },
+    {
+      "text": "The system heals itself."
+    },
+    {
+  "line": true
+},
+    {
+      "heading": "The Real Lesson: Redis Is Just the Tool"
+    },
+    {
+      "text": "Redis often gets the credit here,** but Redis is not the hero.**"
+    },
+            {
+      "text": "The real engineering brilliance lies in the **decisions**"
+    },
+    {
+      "list": [
+        "**What to cache** → Temporary seat locks, not confirmed bookings",
+        "**How long the TTL should be** → Long enough for payment, short enough to avoid blocking",
+        "**When to invalidate** → On success immediately, on failure automatically"
+      ]
+    },
+    {
+      "text": "This is caching as a **business rule enforcer**, not just a performance booster."
+    },
+    {
+      "heading": "Simple Diagram: Seat Booking with Cache"
+    },
         {
-          "type": "image",
-          "src": "https://source.unsplash.com/random/1000x500?servers,data-center",
-          "alt": "Data Center"
-        },
-        { "type": "heading", "text": "Core Components" },
-        {
-          "type": "list",
-          "items": [
-            "User Service",
-            "Media Service",
-            "Feed Service",
-            "Notification Service",
-            "Search Service"
-          ]
-        },
-        {
-          "type": "quote",
-          "text": "Scaling is not about adding more servers, it's about eliminating bottlenecks."
-        }
+      "image": {
+        "src": "/blogs/redis-blog.jpeg",
+        "alt": "Redis-blog System Design",
+        "caption": ""
+      }
+    },
+    {
+      "heading": "Final Thought"
+    },
+    {
+      "text": "Caching is often introduced as an optimization technique."
+    },
+    {
+      "text": "But in real-world systems like ticket booking, it becomes a **  core part of correctness, consistency, and user experience.**"
+    },
+    {
+      "text": "Speed is just a side effect. **Good caching is strategy.**"
+    }
+  ]
+}
+,
+{
+  "id": "why-netflix-never-crashes",
+  "title": "Give Me 2 Minutes and I’ll Teach You Why Netflix Never Crashes",
+  "subtitle": "How Netflix designs systems that handle failure gracefully at massive scale.",
+  "tags": ["system-design", "netflix", "scalability"],
+  "rating": 4.9,
+  "image": "/blogs/netflixCover.jpeg",
+  "contentBlocks": [
+    {
+      "text": "Every Friday night, millions of people across the world open Netflix at the same time. New shows are released, trailers go viral, and traffic spikes happen within minutes. Yet for most users, Netflix simply works.\n No errors, no outages, no visible stress on the system. This is not because Netflix avoids traffic spikes, but because it is engineered with the assumption that failures, sudden load, and infrastructure issues are inevitable. The real challenge Netflix solves is not handling traffic, but **handling failure gracefully at massive scale.**"
+    },
+
+    {
+      "gap": " "
+    },
+
+    {
+      "text": "At the core of Netflix’s architecture is **extreme distribution.** Instead of one large application, Netflix is composed of hundreds of small, independent microservices. Each service is responsible for a single function such as user profiles, recommendations, playback, or billing. These services scale independently and, more importantly, can fail independently. If the recommendation service is slow or unavailable, the user can still watch a movie. This isolation prevents a single failure from cascading into a system-wide outage, which is one of the most common reasons large platforms crash."
+    },
+
+    {
+      "gap": " "
+    },
+
+    {
+      "text": "Caching and **controlled degradation** play a crucial role in keeping Netflix stable under load. Most user data, metadata, and recommendations are served from optimized caches rather than hitting databases on every request. When a downstream service becomes slow, Netflix does not wait indefinitely. It **fails fast**, returns fallback responses, and moves on. This protects the system from resource exhaustion and ensures that critical paths like video playback remain available even when non-essential components struggle."
+    },
+
+    {
+      "gap": " "
+    },
+
+    {
+      "text": "From an architecture perspective, the request flow itself is designed for **resilience.** A user request first hits an edge layer and load balancer, which routes it to multiple application services running across regions. Each service communicates with others through well-defined APIs and relies heavily on caches instead of direct database access. Circuit breakers, timeouts, and retries ensure that slow or unhealthy services are isolated quickly. Behind the scenes, data is replicated across regions so that even a full cloud-region failure does not interrupt streaming. Netflix’s architecture is not optimized for perfection, but for survival under constant stress."
+    },
+
+    {
+      "gap": " "
+    },
+
+    {
+      "text": "Netflix further strengthens this design through **chaos engineering** and multi-region deployments. By intentionally killing servers and simulating failures in production, Netflix ensures that resilience is continuously tested rather than assumed. Entire availability zones and regions can go offline without affecting users because traffic is automatically rerouted. Failure is not treated as an exception; it is treated as a normal operating condition that the system is always ready to absorb."
+    },
+
+    {
+      "line": true
+    },
+
+    {
+      "heading": "The Big Takeaway"
+    },
+    {
+      "text": "Netflix does not stay online because it avoids failures. It stays online because it **expects failures and designs around them.** Scalability is not just about handling more users; it is about preventing small problems from turning into large outages. Distributed services, caching, fast failures, graceful degradation, and constant resilience testing together create a system that bends under pressure instead of breaking. This mindset is why Netflix never appears to crash."
+    },
+
+    {
+      "line": true
+    },
+
+    {
+      "heading": "How to Explain This in a System Design Interview"
+    },
+    {
+      "text": "If an interviewer asks, “How does Netflix handle massive scale without crashing?”, a strong answer would sound like this:"
+    },
+    {
+      "text": "Netflix achieves high availability by using a distributed microservices architecture where each service scales and fails independently. Heavy use of caching reduces database load, while circuit breakers and timeouts prevent slow services from causing cascading failures. The system is deployed across multiple regions to eliminate single points of failure, and chaos engineering is used to continuously test resilience. Instead of trying to prevent failures, Netflix designs the system to **handle failures gracefully** while keeping critical user flows, such as video playback, always available."
+    },
+
+    {
+      "gap": " "
+    },
+
+    {
+      "text": "This answer shows:"
+    },
+    {
+      "list": [
+        "Architectural thinking",
+        "Understanding of failure modes",
+        "Practical scalability principles"
       ]
     },
 
     {
-      "id": "ace-dsa-interviews",
-      "title": "How to Prepare for DSA Interviews Effectively",
-      "subtitle": "A structured roadmap to crack coding rounds at FAANG-level companies.",
-      "author": "Ananya Gupta",
-      "authorAvatar": "https://source.unsplash.com/random/200x200?girl,face",
-      "date": "2025-01-12",
-      "readTime": "10 min",
-      "tags": ["dsa", "interview-prep", "roadmap"],
-      "rating": 4.7,
-      "image": "https://source.unsplash.com/random/1200x600?coding,developer",
-      "contentBlocks": [
-        { "type": "heading", "text": "Why DSA Still Matters" },
-        {
-          "type": "text",
-          "text": "DSA is the foundation of logical problem-solving and technical interviews."
-        },
-        {
-          "type": "image",
-          "src": "https://source.unsplash.com/random/1000x500?code,terminal",
-          "alt": "DSA Coding"
-        },
-        { "type": "heading", "text": "Weekly Preparation Plan" },
-        {
-          "type": "list",
-          "items": [
-            "Week 1–2: Arrays, Strings",
-            "Week 3–4: Trees, Graphs",
-            "Week 5: DP",
-            "Week 6: Mock Interviews"
-          ]
-        },
-        { "type": "heading", "text": "Pro Tips" },
-        {
-          "type": "text",
-          "text": "Master patterns instead of solving random problems."
-        }
-      ]
+      "text": "Which is exactly what interviewers look for."
     },
 
     {
-      "id": "cracking-low-level-design",
-      "title": "Mastering Low Level Design (LLD) for Interviews",
-      "subtitle": "Learn OOP, design patterns, UML, class diagrams, and best practices.",
-      "author": "Sachin Verma",
-      "authorAvatar": "https://source.unsplash.com/random/200x200?man,face",
-      "date": "2025-02-02",
-      "readTime": "15 min",
-      "tags": ["lld", "design-patterns", "interview"],
-      "rating": 4.8,
-      "image": "https://source.unsplash.com/random/1200x600?design,software",
-      "contentBlocks": [
-        { "type": "heading", "text": "Introduction to LLD" },
-        {
-          "type": "text",
-          "text": "LLD evaluates your object-oriented modeling and system breakdown ability."
-        },
-        {
-          "type": "image",
-          "src": "https://source.unsplash.com/random/1000x500?uml,architecture",
-          "alt": "LLD Diagram"
-        },
-        { "type": "heading", "text": "Important Design Patterns" },
-        {
-          "type": "list",
-          "items": ["Singleton", "Strategy", "Observer", "Factory"]
-        }
-      ]
+      "image": {
+        "src": "/blogs/netflix-blog.jpeg",
+        "alt": "Netflix-blog System Design",
+        "caption": ""
+      }
+    }
+  ]
+}
+,
+{
+  "id": "sql-nosql-search-engines",
+  "title": "How to Decide Between SQL, NoSQL, and Search Engines",
+  "subtitle": "Choosing the right data storage technology by understanding the problem first.",
+  "tags": ["system-design", "databases", "sql", "nosql"],
+  "rating": 4.8,
+  "image": "/blogs/SqlVsNoSqlCover.jpeg",
+  "contentBlocks": [
+    {
+      "text": "One of the most common mistakes in system design is starting with the technology instead of the problem. Teams often ask, “Should we use SQL or NoSQL?” or “Do we need Elasticsearch?” before they clearly understand what they are trying to optimize for. The truth is that **SQL databases, NoSQL stores, and search engines are not competitors.** They solve different problems, and choosing the right one is about **understanding access patterns, consistency requirements, and scale expectations** rather than following trends."
     },
 
     {
-      "id": "system-design-twitter",
-      "title": "How Twitter Handles Millions of Tweets Per Minute",
-      "subtitle": "Inside the architecture of feed fan-out, timelines, and caching.",
-      "author": "Karan Singh",
-      "authorAvatar": "https://source.unsplash.com/random/200x200?man,developer",
-      "date": "2024-11-22",
-      "readTime": "11 min",
-      "tags": ["system-design", "twitter", "distributed-systems"],
-      "rating": 4.8,
-      "image": "https://source.unsplash.com/random/1200x600?twitter,cloud",
-      "contentBlocks": [
-        { "type": "heading", "text": "Tweet Write Path" },
-        {
-          "type": "text",
-          "text": "Twitter optimizes write-heavy workloads using distributed logs and sharding."
-        },
-        {
-          "type": "image",
-          "src": "https://source.unsplash.com/random/1000x500?cloud,network",
-          "alt": "Network"
-        },
-        {
-          "type": "heading",
-          "text": "Fan-out Strategies"
-        },
-        {
-          "type": "list",
-          "items": ["Fan-out on write", "Fan-out on read", "Hybrid"]
-        }
-      ]
+      "gap": " "
     },
 
     {
-      "id": "mongodb-vs-sql",
-      "title": "MongoDB vs SQL — Which One Should You Choose?",
-      "subtitle": "Deep comparison based on scaling, schema, consistency, and performance.",
-      "author": "Neha Sharma",
-      "authorAvatar": "https://source.unsplash.com/random/200x200?woman,face",
-      "date": "2024-08-15",
-      "readTime": "9 min",
-      "tags": ["database", "mongodb", "sql"],
-      "rating": 4.6,
-      "image": "https://source.unsplash.com/random/1200x600?database,technology",
-      "contentBlocks": [
-        { "type": "heading", "text": "Key Differences" },
-        {
-          "type": "list",
-          "items": [
-            "SQL = structured, ACID",
-            "MongoDB = flexible schema",
-            "SQL best for transactions",
-            "MongoDB best for horizontal scaling"
-          ]
-        },
-        {
-          "type": "image",
-          "src": "https://source.unsplash.com/random/1000x500?database,server",
-          "alt": "Servers"
-        }
-      ]
+      "text": "SQL databases shine when your data has **strong relationships** and correctness matters more than flexibility. If your system requires transactions, joins, constraints, and guarantees that data is always consistent, relational databases are hard to beat. Banking systems, order management, inventory tracking, and most core business workflows naturally fit into SQL models because the structure is well-defined and changes slowly. The cost you pay is scalability complexity, but in return you get **reliability, predictability, and decades of proven behavior.**"
     },
 
     {
-      "id": "frontend-ai-tools",
-      "title": "Best AI Tools for Frontend Developers in 2025",
-      "subtitle": "Top tools that boost productivity, code quality, and UI creation.",
-      "author": "Priya Raj",
-      "authorAvatar": "https://source.unsplash.com/random/200x200?girl,developer",
-      "date": "2025-03-03",
-      "readTime": "8 min",
-      "tags": ["frontend", "ai", "tools"],
-      "rating": 4.9,
-      "image": "https://source.unsplash.com/random/1200x600?ai,frontend",
-      "contentBlocks": [
-        { "type": "heading", "text": "Top AI Tools" },
-        {
-          "type": "list",
-          "items": ["GitHub Copilot", "Figma AI", "Vercel v0", "ChatGPT UI Assistant"]
-        },
-        {
-          "type": "image",
-          "src": "https://source.unsplash.com/random/1000x500?ui,code",
-          "alt": "AI Coding"
-        }
-      ]
+      "gap": " "
     },
 
     {
-      "id": "how-cdns-work",
-      "title": "How CDNs Work — Complete Guide",
-      "subtitle": "Everything about caching, edge servers, routing, and performance.",
-      "author": "Arjun Mehta",
-      "authorAvatar": "https://source.unsplash.com/random/200x200?face,tech",
-      "date": "2024-07-10",
-      "readTime": "9 min",
-      "tags": ["cdn", "networking", "performance"],
-      "rating": 4.8,
-      "image": "https://source.unsplash.com/random/1200x600?cdn,network",
-      "contentBlocks": [
-        { "type": "heading", "text": "What is a CDN?" },
-        {
-          "type": "text",
-          "text": "CDNs distribute content across global edge servers for fast delivery."
-        },
-        {
-          "type": "image",
-          "src": "https://source.unsplash.com/random/1000x500?server,global",
-          "alt": "CDN Network"
-        }
-      ]
+      "text": "NoSQL databases exist to solve a different class of problems. When data structure is flexible, schemas evolve frequently, or traffic scales horizontally at massive levels, rigid relational models become a bottleneck. Key-value stores, document databases, and wide-column stores trade strong consistency and joins for **speed, availability, and easy horizontal scaling.** User sessions, activity logs, IoT data, and recommendation signals are classic NoSQL use cases. The key mindset shift here is accepting **eventual consistency** and designing your application logic accordingly."
     },
 
     {
-      "id": "react-performance",
-      "title": "Boosting React Performance — 2025 Guide",
-      "subtitle": "Memoization, virtualization, batching, and advanced optimization.",
-      "author": "Dev Mishra",
-      "authorAvatar": "https://source.unsplash.com/random/200x200?developer,man",
-      "date": "2025-04-01",
-      "readTime": "10 min",
-      "tags": ["react", "performance", "javascript"],
-      "rating": 4.7,
-      "image": "https://source.unsplash.com/random/1200x600?react,javascript",
-      "contentBlocks": [
-        { "type": "heading", "text": "Key Techniques" },
-        {
-          "type": "list",
-          "items": [
-            "React.memo",
-            "useCallback & useMemo",
-            "Virtualized lists",
-            "Bundle optimization"
-          ]
-        }
-      ]
+      "gap": " "
     },
 
     {
-      "id": "roadmap-fullstack",
-      "title": "Full Stack Developer Roadmap 2025",
-      "subtitle": "Complete roadmap from beginner to advanced full-stack mastery.",
-      "author": "Vivek Jha",
-      "authorAvatar": "https://source.unsplash.com/random/200x200?face,professional",
-      "date": "2025-01-20",
-      "readTime": "14 min",
-      "tags": ["fullstack", "roadmap", "career"],
-      "rating": 4.9,
-      "image": "https://source.unsplash.com/random/1200x600?fullstack,programming",
-      "contentBlocks": [
-        { "type": "heading", "text": "Skill Breakdown" },
-        {
-          "type": "list",
-          "items": ["Frontend", "Backend", "Databases", "DevOps"]
-        }
-      ]
+      "text": "Search engines like Elasticsearch or OpenSearch are often misunderstood as databases, but their true strength lies in **retrieval, not storage.** They are optimized for fast text search, filtering, ranking, and aggregations across large datasets. If your users expect Google-like search, fuzzy matching, relevance scoring, or real-time analytics dashboards, a search engine is the right tool. However, they should not be treated as the source of truth. In well-designed systems, search engines sit alongside SQL or NoSQL databases, **indexing data from them rather than replacing them.**"
     },
 
     {
-      "id": "ai-transforming-tech",
-      "title": "How AI Is Transforming Software Engineering",
-      "subtitle": "Automation, copilots, testing, and intelligent tooling.",
-      "author": "Tanvi Chauhan",
-      "authorAvatar": "https://source.unsplash.com/random/200x200?woman,tech",
-      "date": "2024-12-29",
-      "readTime": "10 min",
-      "tags": ["ai", "software", "future"],
-      "rating": 4.8,
-      "image": "https://source.unsplash.com/random/1200x600?ai,software",
-      "contentBlocks": [
-        { "type": "heading", "text": "AI Uses in Development" },
-        {
-          "type": "list",
-          "items": ["Code generation", "Automated testing", "Smart debugging"]
-        }
-      ]
+      "gap": " "
     },
-  {
-    "id": "designing-youtube",
-    "title": "How YouTube Handles Petabytes of Video Data",
-    "subtitle": "A deep breakdown of video encoding, CDN distribution, caching, and streaming.",
-    "author": "Ritesh Kapoor",
-    "authorAvatar": "https://source.unsplash.com/random/200x200?face,businessman",
-    "date": "2025-02-18",
-    "readTime": "14 min",
-    "tags": ["system-design", "video-streaming", "cdn"],
-    "rating": 4.9,
-    "image": "https://source.unsplash.com/random/1200x600?youtube,video",
-    "contentBlocks": [
-      { "type": "heading", "text": "Why Video Systems Are Hard" },
-      {
-        "type": "text",
-        "text": "Video streaming systems require massive bandwidth, low latency, and smart adaptive bitrates."
-      },
-      {
-        "type": "image",
-        "src": "https://source.unsplash.com/random/1000x500?streaming,network",
-        "alt": "Streaming Architecture"
-      },
-      {
-        "type": "list",
-        "items": ["Adaptive Bitrate", "Edge Caching", "Chunk-based Streaming"]
-      }
-    ]
-  },
 
-  {
-    "id": "designing-uber",
-    "title": "How Uber Matches Millions of Riders and Drivers",
-    "subtitle": "Deep dive into maps, geospatial indexing, matching algorithms, and real-time updates.",
-    "author": "Mehul Sinha",
-    "authorAvatar": "https://source.unsplash.com/random/200x200?man,portrait",
-    "date": "2025-01-29",
-    "readTime": "15 min",
-    "tags": ["system-design", "uber", "geospatial"],
-    "rating": 4.8,
-    "image": "https://source.unsplash.com/random/1200x600?uber,map",
-    "contentBlocks": [
-      { "type": "heading", "text": "Core Components" },
-      {
-        "type": "list",
-        "items": [
-          "Real-time Location Service",
-          "Matching Algorithm",
-          "Route Optimization",
-          "Dynamic Pricing Engine"
-        ]
-      },
-      {
-        "type": "image",
-        "src": "https://source.unsplash.com/random/1000x500?map,gps",
-        "alt": "Geo Architecture"
-      }
-    ]
-  },
+    {
+      "text": "The most scalable systems rarely make an “either-or” choice. Instead, they **combine these technologies intentionally.** A typical architecture might use SQL for core transactional data, NoSQL for high-volume or rapidly changing data, and a search engine for discovery and analytics. The real engineering skill lies not in picking one technology, but in **clearly defining ownership, consistency boundaries, and synchronization strategies** between them."
+    },
 
-  {
-    "id": "javascript-best-practices",
-    "title": "Top JavaScript Best Practices Every Developer Must Know",
-    "subtitle": "Clean code, performance, patterns, and debugging.",
-    "author": "Aman Yadav",
-    "authorAvatar": "https://source.unsplash.com/random/200x200?developer,man",
-    "date": "2025-03-02",
-    "readTime": "9 min",
-    "tags": ["javascript", "clean-code", "best-practices"],
-    "rating": 4.7,
-    "image": "https://source.unsplash.com/random/1200x600?javascript,code",
-    "contentBlocks": [
-      { "type": "heading", "text": "Why Best Practices Matter" },
-      {
-        "type": "text",
-        "text": "JavaScript is flexible, and best practices help maintain reliability and readability."
-      },
-      {
-        "type": "list",
-        "items": ["Avoid globals", "Use const/let", "Write pure functions"]
-      }
-    ]
-  },
+    {
+      "line": true
+    },
 
-  {
-    "id": "designing-netflix",
-    "title": "How Netflix Streams Movies to the Entire World",
-    "subtitle": "Inside the architecture of encoding, CDN, and failure handling.",
-    "author": "Yash Khatri",
-    "authorAvatar": "https://source.unsplash.com/random/200x200?man,thinking",
-    "date": "2025-02-07",
-    "readTime": "13 min",
-    "tags": ["system-design", "netflix", "streaming"],
-    "rating": 4.9,
-    "image": "https://source.unsplash.com/random/1200x600?netflix,streaming",
-    "contentBlocks": [
-      { "type": "heading", "text": "Netflix Open Connect" },
-      {
-        "type": "text",
-        "text": "Netflix deploys custom appliances around the world to minimize latency."
-      },
-      {
-        "type": "image",
-        "src": "https://source.unsplash.com/random/1000x500?internet,data",
-        "alt": "CDN Devices"
-      }
-    ]
-  },
+    {
+      "heading": "The Takeaway"
+    },
+    {
+      "text": "Choosing between SQL, NoSQL, and search engines is not about which one is better — it’s about which one is **correct for a specific responsibility.** SQL protects correctness, NoSQL enables scale and flexibility, and search engines optimize retrieval and user experience. Strong system design starts by understanding data access patterns and failure modes, and only then selecting the right combination of tools. When you let the problem drive the architecture, the decision becomes surprisingly clear."
+    },
 
-  {
-    "id": "kafka-explained",
-    "title": "Apache Kafka Explained — Complete Beginner to Advanced Guide",
-    "subtitle": "Distributed logs, partitions, brokers, consumers, retention, and more.",
-    "author": "Riya Menon",
-    "authorAvatar": "https://source.unsplash.com/random/200x200?girl,portrait",
-    "date": "2025-01-09",
-    "readTime": "12 min",
-    "tags": ["kafka", "distributed-systems", "events"],
-    "rating": 4.8,
-    "image": "https://source.unsplash.com/random/1200x600?kafka,events",
-    "contentBlocks": [
-      { "type": "heading", "text": "Why Kafka?" },
-      {
-        "type": "text",
-        "text": "Kafka is the backbone of event-driven systems in modern distributed architectures."
-      },
-      {
-        "type": "list",
-        "items": ["Partitions", "Replication", "Offset Tracking"]
+    {
+      "image": {
+        "src": "/blogs/SqlVsNoSql.jpeg",
+        "alt": "Sql vs NoSql System Design",
+        "caption": ""
       }
-    ]
-  },
+    }
+  ]
+}
 
-  {
-    "id": "designing-payment-gateway",
-    "title": "How Payment Gateways Like Razorpay & Stripe Work",
-    "subtitle": "Authorization, authentication, settlement, and fraud detection.",
-    "author": "Tarun Patel",
-    "authorAvatar": "https://source.unsplash.com/random/200x200?man,face",
-    "date": "2024-10-13",
-    "readTime": "10 min",
-    "tags": ["fintech", "payments", "system-design"],
-    "rating": 4.9,
-    "image": "https://source.unsplash.com/random/1200x600?payment,fintech",
-    "contentBlocks": [
-      { "type": "heading", "text": "Payment Flow Overview" },
-      {
-        "type": "list",
-        "items": ["Card Entry", "Tokenization", "Bank Authorization", "Settlement"]
-      },
-      {
-        "type": "image",
-        "src": "https://source.unsplash.com/random/1000x500?fintech,bank",
-        "alt": "Payment Flow"
-      }
-    ]
-  },
 
-  {
-    "id": "docker-kubernetes",
-    "title": "Docker vs Kubernetes — What’s the Difference?",
-    "subtitle": "Containerization, orchestration, scaling, cluster management.",
-    "author": "Gautam Rao",
-    "authorAvatar": "https://source.unsplash.com/random/200x200?tech,face",
-    "date": "2025-01-19",
-    "readTime": "11 min",
-    "tags": ["docker", "kubernetes", "devops"],
-    "rating": 4.7,
-    "image": "https://source.unsplash.com/random/1200x600?docker,kubernetes",
-    "contentBlocks": [
-      { "type": "heading", "text": "Key Differences" },
-      {
-        "type": "list",
-        "items": [
-          "Docker = Containerization",
-          "Kubernetes = Orchestration",
-          "K8s handles load, scaling, recovery"
-        ]
-      }
-    ]
-  },
-
-  {
-    "id": "load-balancing-explained",
-    "title": "Load Balancing Explained — Types, Strategies & Use Cases",
-    "subtitle": "RR, IP hashing, L7 proxying, health checks, failover.",
-    "author": "Sana Fatima",
-    "authorAvatar": "https://source.unsplash.com/random/200x200?girl,tech",
-    "date": "2024-09-25",
-    "readTime": "8 min",
-    "tags": ["load-balancing", "networking", "system-design"],
-    "rating": 4.8,
-    "image": "https://source.unsplash.com/random/1200x600?loadbalancer,servers",
-    "contentBlocks": [
-      { "type": "heading", "text": "Types of Load Balancers" },
-      {
-        "type": "list",
-        "items": ["L4 Load Balancer", "L7 Load Balancer", "Reverse Proxy"]
-      }
-    ]
-  },
-
-  {
-    "id": "microservices-vs-monolith",
-    "title": "Microservices vs Monolith — Which Architecture Should You Choose?",
-    "subtitle": "Pros, cons, scaling, complexity, deployment.",
-    "author": "Sourabh Goyal",
-    "authorAvatar": "https://source.unsplash.com/random/200x200?man,engineer",
-    "date": "2025-01-01",
-    "readTime": "9 min",
-    "tags": ["architecture", "microservices", "monolith"],
-    "rating": 4.6,
-    "image": "https://source.unsplash.com/random/1200x600?microservices,architecture",
-    "contentBlocks": [
-      { "type": "heading", "text": "Comparison" },
-      {
-        "type": "list",
-        "items": [
-          "Microservices scale independently",
-          "Monoliths are easier to debug",
-          "Microservices require DevOps maturity"
-        ]
-      }
-    ]
-  },
-
-  {
-    "id": "redis-complete-guide",
-    "title": "Redis Complete Guide — Caching, Pub/Sub, Streams, Use Cases",
-    "subtitle": "Learn every major Redis feature used in system design.",
-    "author": "Harshit Chauhan",
-    "authorAvatar": "https://source.unsplash.com/random/200x200?face,developer",
-    "date": "2024-12-14",
-    "readTime": "12 min",
-    "tags": ["redis", "cache", "system-design"],
-    "rating": 4.9,
-    "image": "https://source.unsplash.com/random/1200x600?redis,database",
-    "contentBlocks": [
-      { "type": "heading", "text": "Why Redis is Fast" },
-      {
-        "type": "list",
-        "items": ["In-memory data", "Single-threaded event loop", "Optimized data types"]
-      },
-      {
-        "type": "image",
-        "src": "https://source.unsplash.com/random/1000x500?cache,memory",
-        "alt": "Redis Memory"
-      }
-    ]
-  }
   ]
 }

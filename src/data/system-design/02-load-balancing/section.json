@@ -1,8 +1,0 @@
-{
-  "id": "load-balancing",
-  "title": "Load Balancing",
-  "description": "Basics of load balancing techniques.",
-  "topics": [
-    { "id": "what-is-load-balancing", "title": "What is Load Balancing?" }
-  ]
-}

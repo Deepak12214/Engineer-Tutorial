@@ -109,16 +109,16 @@ export default function BlogList() {
               bg-bg-surface 
               border border-border
               hover:shadow-lg hover:-translate-y-1 
-              transition
+              transition relative
             "
           >
             <img
               src={blog.image}
               alt={blog.title}
-              className="w-full h-56 object-cover"
+              className="w-full h-56 object-cover "
             />
 
-            <div className="p-5">
+            <div className="p-5  ">
               <h2 className="text-xl font-semibold text-text-primary">
                 {blog.title}
               </h2>
@@ -127,7 +127,7 @@ export default function BlogList() {
                 {blog.subtitle}
               </p>
 
-              <div className="flex items-center gap-3 mt-4">
+              {/* <div className="flex items-center gap-3 mt-4">
                 <img
                   src={blog.authorAvatar}
                   className="w-10 h-10 rounded-full object-cover"
@@ -144,7 +144,7 @@ export default function BlogList() {
 
               <div className="mt-3 text-yellow-500 text-sm">
                 ⭐ {blog.rating}
-              </div>
+              </div> */}
 
               <div className="mt-3 flex flex-wrap gap-2">
                 {blog.tags.map((tag, idx) => (
