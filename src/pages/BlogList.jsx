@@ -115,7 +115,7 @@ export default function BlogList() {
             <img
               src={blog.image}
               alt={blog.title}
-              className="w-full h-56 object-cover "
+              className="w-full h-56 object-cover object-top"
             />
 
             <div className="p-5  ">
