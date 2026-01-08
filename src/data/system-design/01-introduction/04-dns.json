@@ -1,0 +1,261 @@
+{
+  "id": "dns",
+  "heading": "DNS",
+  "blocks": [
+    {
+      "text": "**DNS** stands for **Domain Name System.**"
+    },
+    {
+      "text": "**DNS (Domain Name System)** is a system that **translates human-readable domain names** (like www.google.com) into IP addresses (like 142.250.182.206) that computers use to identify each other on the internet."
+    },
+    {
+      "text": "It acts like the **internet’s phonebook**, allowing users to access websites easily without remembering complex numerical addresses."
+    },
+
+    {
+      "mediumHeading": "Why do we need DNS?"
+    },
+    {
+  "numberedList": [
+    {
+      "title": "Easy to remember website names",
+      "points": [
+        "Computers use IP addresses (like 142.250.182.206), which are hard for humans to remember.",
+        "DNS lets us use simple names like google.com instead."
+      ]
+    },
+    {
+      "title": "Faster access to websites",
+      "points": [
+        "DNS quickly converts domain names into IP addresses so your browser can connect to the correct website."
+      ]
+    },
+    {
+      "title": "Organized Internet system",
+      "points": [
+        "The internet has billions of websites. DNS keeps them organized and helps route requests efficiently."
+      ]
+    },
+    {
+      "title": "Supports multiple services",
+      "points": [
+        "DNS is not just for websites; it also directs emails, subdomains, and other services."
+      ]
+    },
+    {
+      "title": "Reduces errors",
+      "points": [
+        "Without DNS, users would have to type IP addresses manually, which could easily cause mistakes."
+      ]
+    },
+        {
+      "title": "Scalable and reliable",
+      "points": [
+        "DNS servers are spread worldwide, so even if one server fails, others can handle the requests."
+      ]
+    }
+  ]
+},
+
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "Simple way to remember:"
+    },
+    {
+      "text": "DNS is like a **school contact book** – you look up a friend’s name, not their phone number, and the book tells you the number. Without DNS, the internet would be just a huge list of numbers! 📒🌐"
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "Real-Life Examples of DNS"
+    },
+    {
+  "numberedList": [
+    {
+      "title": "Opening a website",
+      "points": [
+        "When you type **www.google.com** in your browser, DNS translates it to its IP address, like **142.250.182.206**, so your browser can load the site."
+      ]
+    },
+    {
+      "title": "Sending an email",
+      "points": [
+        "When you send an email to **pari@example.com**, DNS finds the mail server of **example.com** using **MX records** and delivers your email."
+      ]
+    },
+    {
+      "title": "Visiting a subdomain",
+      "points": [
+        "Typing **blog.parisdream90.com** uses DNS to find the server hosting the blog, even though the main website may be hosted somewhere else."
+      ]
+    },
+    {
+      "title": "Using online games or apps",
+      "points": [
+        "Apps like **Fortnite, WhatsApp, or Instagram** use DNS to connect to their servers automatically without you knowing the IP addresses."
+      ]
+    },
+    {
+      "title": "Video streaming",
+      "points": [
+        "Platforms like **YouTube or Netflix** use DNS to direct your request to the nearest server, making streaming faster."
+      ]
+    }
+  ]
+  
+},
+        {
+      "image": {
+        "src": "/system-desgin/dns-01.png",
+        "alt": "Dns ",
+        "caption": ""
+      }
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "Types of DNS Records"
+    },
+    {
+      "text": "DNS records are like instructions that tell the internet how to handle your domain name. Here are the main types:"
+    },
+    {
+  "numberedList": [
+    {
+      "title": "A Record (Address Record)",
+      "points": [
+        "**Purpose:** Connects a domain name to an **IPv4 address** (the website’s number).",
+        "**Example:** example.com → 192.168.1.1",
+        "**Use:** It allows your browser to know where the website is hosted."
+      ]
+    },
+    {
+      "title": "AAAA Record (IPv6 Address Record)",
+      "points": [
+        "**Purpose:** Same as A record but for **IPv6 addresses** (longer numbers used for the modern internet).",
+        "**Example:** example.com → 2001:0db8:85a3:0000:0000:8a2e:0370:7334",
+        "**Use:** Needed for websites using IPv6 instead of IPv4."
+      ]
+    },
+    {
+      "title": "CNAME Record (Canonical Name Record)",
+      "points": [
+        "**Purpose:** Points one domain name to another **domain name** instead of an IP address.",
+        "**Example:** www.example.com → example.com",
+        "**Use:** Useful if you have multiple subdomains and want them all to point to the same site."
+      ]
+    },
+    {
+      "title": "MX Record (Mail Exchange Record)",
+      "points": [
+        "**Purpose:** Directs emails to the **mail server** of your domain.",
+        "**Example:** Emails sent to user@example.com go to the mail server mail.example.com.",
+        "**Use:** Necessary for sending and receiving emails for your domain."
+      ]
+    },
+    {
+      "title": "NS Record (Name Server Record)",
+      "points": [
+        "**Purpose:** Tells the internet which **DNS server is authoritative** for your domain.",
+        "**Example:** example.com → ns1.hosting.com",
+        "**Use:** Ensures queries for your domain go to the correct DNS server."
+      ]
+    },
+    {
+      "title": "PTR Record (Pointer Record)",
+      "points": [
+        "**Purpose:** Reverse of A record; maps an **IP address back to a domain name**.",
+        "**Example:** 192.168.1.1 → example.com",
+        "**Use:** Often used for verifying email servers (**anti-spam**)."
+      ]
+    },
+    {
+      "title": "TXT Record (Text Record)",
+      "points": [
+        "**Purpose:** Stores **text information** in the DNS.",
+        "**Example:** Used for email verification like **SPF or DKIM**.",
+        "**Use:** Helps prevent spam and prove ownership of a domain."
+      ]
+    },
+    {
+      "title": "SRV Record (Service Record)",
+      "points": [
+        "**Purpose:** Specifies the location of **services** like VoIP or chat servers.",
+        "**Example:** _sip._tcp.example.com → 10 5 5060 sipserver.example.com",
+        "**Use:** Useful for apps and services needing specific server information."
+      ]
+    },
+    {
+      "title": "SOA Record (Start of Authority Record)",
+      "points": [
+        "**Purpose:** Contains information about the domain and its **DNS zone**.",
+        "**Example Info:** Primary server, admin email, refresh rate, etc.",
+        "**Use:** Essential for DNS servers to manage the domain properly."
+      ]
+    }
+  ]
+}
+,
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "Quick Summary"
+    },
+    {
+      "list": [
+        "A / AAAA → Website IP",
+        "CNAME → Alias for a domain",
+        "MX → Email server",
+        "NS → DNS server",
+        "PTR → IP to domain",
+        "TXT → Verification / info",
+        "SRV → Service location",
+        "SOA → Domain authority info"
+      ]
+    },
+        {
+      "image": {
+        "src": "/system-desgin/dns-02.png",
+        "alt": "Dns ",
+        "caption": ""
+      }
+    },
+    {
+      "line": true
+    },{
+      "smallHeading": "Advantages of DNS"
+    },
+    {
+      "list": [
+        "**Easy to remember** – You can type website names like google.com instead of hard-to-remember numbers (IP addresses).",
+        "**Faster access** – DNS quickly converts names to IP addresses, so websites open faster.",
+        "**Scalable** – It can handle billions of website addresses all over the world.",
+        "**Load distribution** – DNS can share traffic among multiple servers to avoid website overload.",
+        "**Reliable** – With many DNS servers worldwide, the system is decentralized and doesn’t depend on one server.",
+        "**Supports multiple services** – Not just websites; DNS also helps with emails, subdomains, and other internet services."
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "Disadvantages of DNS"
+    },
+    {
+      "list": [
+        "**Server failure** – If a DNS server stops working, the websites linked to it may not open.",
+        "**Security risks** – Hackers can perform attacks like DNS spoofing, redirecting users to fake sites.",
+        "**Propagation delay** – Changes in website IP or creation of a new site may take time to update worldwide.",
+        "**Complex management** – Managing DNS for large organizations can be complicated and error-prone.",
+        "**Privacy concerns** – DNS queries can show which websites a user visits, risking privacy.",
+        "**High dependency** – The internet heavily depends on DNS; if DNS faces issues, many websites and services are affected."
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,447 @@
+{
+  "id": "service-mesh",
+  "heading": "Service Mesh",
+  "blocks": [
+    {
+      "text": "A Service Mesh is a dedicated infrastructure layer that manages communication between microservices in a distributed application."
+    },
+    {
+      "list": [
+        "Think of it as a traffic controller for all the tiny services in a modern application.",
+        "It helps services talk to each other securely, reliably, and efficiently."
+      ]
+    },
+    {
+      "smallHeading": "Simple analogy:"
+    },
+    {
+      "list": [
+        "Imagine a city full of cars (microservices).",
+        "The service mesh is like traffic lights, signs, and highways that make sure every car reaches its destination safely and quickly. 🚦🚗"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Why do we need a Service Mesh?"
+    },
+    {
+      "text": "In modern applications:"
+    },
+    {
+      "list": [
+        "We have hundreds of microservices instead of one big program.",
+        "These services need to communicate constantly."
+      ]
+    },
+    {
+      "smallHeading": "Challenges without a service mesh:"
+    },
+    {
+      "orderedList": [
+        "Handling service discovery (finding other services).",
+        "Managing security and authentication between services.",
+        "Monitoring traffic and performance of each service.",
+        "Implementing load balancing and retry logic for failed requests."
+      ]
+    },
+    {
+      "text": "A service mesh solves all these problems automatically."
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Key Features of a Service Mesh"
+    },
+    {
+      "table": {
+        "headers": ["Feature", "Explanation"],
+        "rows": [
+          [
+            "Service-to-service communication",
+            "Ensures every service can talk to the right service."
+          ],
+          [
+            "Load balancing",
+            "Distributes requests evenly to prevent overload."
+          ],
+          [
+            "Service discovery",
+            "Automatically finds where services are running."
+          ],
+          [
+            "Traffic management",
+            "Controls which requests go where, with rules like routing, retries, failovers."
+          ],
+          [
+            "Security",
+            "Encrypts communication between services and handles authentication."
+          ],
+          [
+            "Observability & monitoring",
+            "Tracks performance, errors, and latency of each service."
+          ],
+          [
+            "Resiliency",
+            "Automatic retries, circuit breakers, and fallbacks for failed requests."
+          ]
+        ]
+      }
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Architecture of a Service Mesh"
+    },
+    {
+      "text": "A service mesh usually has two main components:"
+    },{
+  "numberedList": [
+    {
+      "title": "Data Plane",
+      "points": [
+        "Made of **sidecar proxies** deployed alongside each microservice.",
+        "Handles **all traffic in and out of the service**.",
+        "**Example:** Envoy proxy."
+      ]
+    },
+    {
+      "title": "Control Plane",
+      "points": [
+        "Manages the **configuration and rules** for all sidecars.",
+        "Tells the proxies how to **route traffic**, **apply security**, and **monitor performance**.",
+        "**Examples:** Istio, Linkerd."
+      ]
+    }
+  ]
+},
+    {
+      "smallHeading": "Visual analogy:"
+    },
+    {
+      "text": "Sidecars = security guards for each car (microservice)."
+    },
+    {
+      "text": "Control plane = city traffic manager giving instructions to all guards."
+    },
+    {
+      "image": {
+        "src": "/system-desgin/service-mesh.png",
+        "alt": "service-mesh ",
+        "caption": ""
+      }
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "SERVICE MESH TOOLS"
+    },
+    {
+      "smallHeading": "1. Istio"
+    },
+    {
+      "text": "**Overview:**"
+    },
+    {
+      "list": [
+        "Istio is the most popular and feature-rich service mesh.",
+        "Works mainly with Kubernetes but can support other environments.",
+        "Provides a control plane and uses Envoy sidecar proxies in the data plane."
+      ]
+    },
+    {
+      "text": "**Key Features:**"
+    },
+    {
+      "orderedList": [
+        "Traffic management – Intelligent routing, retries, failovers, and canary deployments.",
+        "Security – Automatic TLS encryption between services, authentication, and authorization.",
+        "Observability – Detailed metrics, logs, and distributed tracing.",
+        "Policy enforcement – Allows administrators to define rules for communication."
+      ]
+    },
+    {
+      "text": "**Use Case Example:**"
+    },
+    {
+      "text": "Airbnb uses Istio for secure, reliable communication between hundreds of microservices."
+    },
+    {
+      "text": "**Pros:**"
+    },
+    {
+      "list": [
+        "Highly feature-rich",
+        "Strong community support",
+        "Supports complex routing and policies"
+      ]
+    },
+    {
+      "text": "**Cons:**"
+    },
+    {
+      "list": [
+        "Can be complex to configure",
+        "Resource-heavy due to Envoy sidecars"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "2. Linkerd"
+    },
+    {
+      "text": "**Overview:**"
+    },
+    {
+      "list": [
+        "Linkerd is lightweight and simple, designed to be easy to deploy.",
+        "Also built for Kubernetes, uses Rust/Go-based proxies in the data plane."
+      ]
+    },
+    {
+      "text": "**Key Features:**"
+    },
+    {
+      "orderedList": [
+        "Simplicity – Minimal configuration required.",
+        "Automatic mTLS encryption – Secure communication between services.",
+        "Observability – Metrics and tracing built-in, but simpler than Istio.",
+        "Resiliency – Retries, timeouts, and circuit breakers for reliability."
+      ]
+    },
+    {
+      "text": "**Use Case Example:**"
+    },
+    {
+      "text": "Monzo (UK bank) uses Linkerd for managing communication in their microservices stack efficiently."
+    },
+    {
+      "text": "**Pros:**"
+    },
+    {
+      "list": [
+        "Easy to set up",
+        "Lightweight and fast",
+        "Focus on reliability and security"
+      ]
+    },
+    {
+      "text": "**Cons:**"
+    },  
+    {
+      "list": [
+        "Fewer features than Istio",
+        "Less flexible for complex routing scenarios"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "3. Consul Connect (HashiCorp)"
+    },
+    {
+      "text": "**Overview:**"
+    },
+    {
+      "list": [
+        "Part of HashiCorp Consul, primarily focused on service discovery and secure service-to-service communication.",
+        "Works with both Kubernetes and traditional VMs."
+      ]
+    },
+    {
+      "text": "**Key Features:**"
+    },
+    {
+      "orderedList": [
+        "Service discovery – Automatically finds where services are running.",
+        "Secure communication – Supports mTLS between services.",
+        "Multi-platform support – Works in cloud and on-premise environments.",
+        "Integrated with HashiCorp tools – Works well with Vault, Terraform, and Nomad."
+      ]
+    },
+    {
+      "text": "**Use Case Example:**"
+    },
+    {
+      "text": "Large enterprises that run a hybrid environment with both containers and VMs use Consul Connect."
+    },
+    {
+      "text" : "**Pros:**"
+    },
+    {
+      "list": [
+        "Works across multiple platforms",
+        "Focus on security and discovery",
+        "Good integration with HashiCorp ecosystem"
+      ]
+    },
+    {
+      "text": "**Cons:**"
+    },
+    {
+      "list": [
+        "Fewer advanced traffic routing features",
+        "Requires other HashiCorp tools for full functionality"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "4. AWS App Mesh"
+    },
+    {
+      "text": "**Overview:**"
+    },
+    {
+      "list": [
+        "Managed service mesh provided by AWS.",
+        "Works with ECS, EKS, and EC2 services.",
+        "Integrates well with AWS services like CloudWatch and IAM."
+      ]
+    },
+    {
+      "text": "**Key Features:**"
+    },
+    {
+      "orderedList": [
+        "Service discovery – Uses AWS Cloud Map.",
+        "Traffic routing – Supports weighted routing and retries.",
+        "Security – TLS encryption and IAM policies.",
+        "Monitoring – Integrated with AWS CloudWatch for metrics."
+      ]
+    },
+    {
+      "text": "**Use Case Example:**"
+    },
+    {
+      "text": "Companies using AWS cloud heavily, like fintech apps, can manage microservices communication without running their own service mesh infrastructure."
+    },
+    {
+      "text" : "**Pros:**"
+    },
+    {
+      "list": [
+        "Fully managed",
+        "Easy integration with AWS ecosystem",
+        "No need to manage infrastructure"
+      ]
+    },
+    {
+      "text": "**Cons:**"
+    },
+    {
+      "list": [
+        "Limited to AWS environment",
+        "Less flexibility than Istio for advanced routing"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "NOW, HOW CAN WE OVERCOME THE DISADVANTAGES OF SERVICE MESH TOOLS"
+    },
+    {
+      "smallHeading": "1. Disadvantage: Added complexity"
+    },
+    {
+      "text": "Problem: Service mesh introduces an extra layer in your system, making it harder to configure and understand."
+    },
+    {
+      "text": "**Solution:**"
+    },
+    {
+      "orderedList": [
+        "Start small – deploy the service mesh in a test environment before production.",
+        "Use simpler service mesh tools like Linkerd if you don’t need all advanced features.",
+        "Follow best practices and guides from the service mesh community (e.g., Istio docs)."
+      ]
+    },
+    {
+      "smallHeading": "2. Disadvantage: Resource consumption"
+    },
+    {
+      "text": "Problem: Sidecar proxies consume CPU and memory, which can affect system performance."
+    },
+    {
+      "text": "**Solution:**"
+    },
+    {
+      "orderedList": [
+        "Use a lightweight service mesh (e.g., Linkerd instead of Istio if resources are limited).",
+        "Monitor resource usage and optimize sidecar configuration.",
+        "Scale your infrastructure appropriately to handle sidecar overhead."
+      ]
+    },
+    {
+      "smallHeading": "3. Disadvantage: Learning curve"
+    },
+    {
+      "text": "Problem: Teams need time to understand service mesh concepts, tools, and configurations."
+    },
+    {
+      "text": "**Solution:**"
+    },
+    {
+      "orderedList": [
+        "Provide training and workshops for your team.",
+        "Use visual diagrams and simplified examples to explain architecture.",
+        "Start with core features first (security and traffic management) before moving to advanced features."
+      ]
+    },
+    {
+      "smallHeading": "4. Disadvantage: Debugging difficulty"
+    },
+    {
+      "text": "Problem: Issues can occur in sidecars or control plane, making troubleshooting harder."
+    },
+    {
+      "text": "**Solution:**"
+    },
+    {
+      "orderedList": [
+        "Use the observability tools of the service mesh (metrics, tracing, and logs).",
+        "Implement structured logging and monitoring.",
+        "Debug step-by-step: check service health → sidecar → control plane."
+      ]
+    },
+    {
+      "smallHeading": "5. Disadvantage: Compatibility or vendor lock-in"
+    },
+    {
+      "text": "Problem: Some service meshes may work only with certain platforms (like AWS App Mesh is AWS-only)."
+    },
+    {
+      "text": "**Solution:**"
+    },
+    {
+      "orderedList": [
+        "Choose a platform-independent service mesh (like Istio or Linkerd) if portability is needed.",
+        "Use standardized protocols like HTTP/HTTPS and gRPC to avoid tight coupling."
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "✅ Quick Summary of Overcoming Disadvantages"
+    },
+    {
+      "list": [
+        "Start small → reduce complexity",
+        "Use lightweight mesh → reduce resource usage",
+        "Train team → overcome learning curve",
+        "Use monitoring & tracing → easier debugging",
+        "Choose platform-independent mesh → avoid vendor lock-in"
+      ]
+    }
+  ]
+}

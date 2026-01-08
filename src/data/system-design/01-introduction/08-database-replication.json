@@ -1,0 +1,265 @@
+{
+  "id": "database-replication",
+  "heading": "Database Replication",
+  "blocks": [
+    {
+      "mediumHeading": "What is Database Replication?"
+    },
+    {
+      "text": "Database Replication is a technique in which the same data is copied and maintained on multiple database servers."
+    },
+    {
+      "text": "One database is the primary (master) and others are secondary (replicas/slaves)."
+    },
+    {
+      "smallHeading": "Simple definition"
+    },
+    {
+      "text": "Database replication is the process of copying data from one database to one or more databases to improve availability, reliability, and performance."
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Why do we need Database Replication?"
+    },
+    {
+      "text": "Large applications need:"
+    },
+    {
+      "list": [
+        "High availability",
+        "Fast data access",
+        "Backup in case of failure"
+      ]
+    },
+    {
+      "text": "**Problems without replication:**"
+    },
+    {
+      "orderedList": [
+        "Single point of failure",
+        "Slow read performance",
+        "Data loss risk",
+        "Poor reliability"
+      ]
+    },
+    {
+      "text": "👉 Replication solves these problems"
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "How Database Replication Works (Step-by-Step)"
+    },
+    {
+      "orderedList": [
+        "Client sends a request",
+        "Write operations go to primary database",
+        "Primary database updates its data",
+        "Changes are copied to replica databases",
+        "Read requests can be served from replicas"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Components of Database Replication"
+    },
+    {
+  "numberedList": [
+    {
+      "title": "Primary (Master) Database",
+      "points": [
+        "Handles **write operations**."
+      ]
+    },
+    {
+      "title": "Replica (Slave) Database",
+      "points": [
+        "Receives **copied data** from the primary database."
+      ]
+    },
+    {
+      "title": "Replication Log",
+      "points": [
+        "Tracks **changes** such as insert, update, and delete."
+      ]
+    },
+    {
+      "title": "Replication Process",
+      "points": [
+        "Transfers **changes to replicas**."
+      ]
+    }
+  ]
+},
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Types of Database Replication"
+    },
+    {
+  "numberedList": [
+    {
+      "title": "Master–Slave Replication",
+      "points": [
+        "One master handles **write operations**.",
+        "Slaves handle **read operations**.",
+        "Most **commonly used** replication method.",
+        "**Example:** MySQL replication."
+      ]
+    },
+    {
+      "title": "Master–Master Replication",
+      "points": [
+        "Both databases handle **reads and writes**.",
+        "Data is **synced both ways**.",
+        "Risk of **data conflict**."
+      ]
+    },
+    {
+      "title": "Synchronous Replication",
+      "points": [
+        "Data is written to **all replicas at the same time**.",
+        "Provides **strong consistency**.",
+        "Results in **slower performance**."
+      ]
+    },
+    {
+      "title": "Asynchronous Replication",
+      "points": [
+        "Data is copied **after primary write**.",
+        "Generally **faster**.",
+        "Slight **data lag** is possible."
+      ]
+    },
+    {
+      "title": "Semi-Synchronous Replication",
+      "points": [
+        "Uses a **hybrid approach**.",
+        "Primary waits for **at least one replica acknowledgment**."
+      ]
+    }
+  ]
+},
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Advantages of Database Replication"
+    },
+    {
+      "orderedList": [
+        "High availability",
+        "Improved read performance",
+        "Data backup and recovery",
+        "Fault tolerance",
+        "Load balancing for read queries"
+      ]
+    },
+    {
+      "mediumHeading": "Disadvantages of Database Replication"
+    },
+    {
+      "orderedList": [
+        "Data inconsistency (especially async)",
+        "Increased storage cost",
+        "Write complexity",
+        "Replication lag",
+        "Harder maintenance"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "How to Overcome Replication Disadvantages"
+    },
+    {
+      "orderedList": [
+        "Use synchronous replication where consistency is critical",
+        "Monitor replication lag",
+        "Use conflict resolution rules",
+        "Combine replication with sharding",
+        "Automate monitoring and alerts"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Real-Life Example"
+    },
+    {
+      "smallHeading": "Online Shopping App"
+    },
+    {
+      "list": [
+        "Product data replicated across regions",
+        "Users read from nearest replica",
+        "If one server fails, another works instantly"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Where Database Replication is Used"
+    },
+    {
+      "list": [
+        "Banking systems",
+        "E-commerce platforms",
+        "Social media apps",
+        "Cloud services",
+        "Disaster recovery systems"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Simple Analogy"
+    },
+    {
+      "text": "🪞 Mirror Example"
+    },
+    {
+      "list": [
+        "One original book",
+        "Many photocopies",
+        "If one copy is lost, others still exist",
+        "👉 Original = Primary DB",
+        "👉 Copies = Replicas"
+      ]
+    },
+    {"text" : "👉 Original = Primary DB \n👉 Copies = Replicas"},
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Replication in Popular Databases"
+    },
+    {
+      "list": [
+        "MySQL – Master–Slave, Group Replication",
+        "PostgreSQL – Streaming Replication",
+        "MongoDB – Replica Sets",
+        "Oracle – Data Guard"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Conclusion"
+    },
+    {
+      "text": "Database replication is essential for reliability and availability in modern systems. It ensures data safety, faster access, and system continuity—but must be managed carefully."
+    }
+  ]
+}

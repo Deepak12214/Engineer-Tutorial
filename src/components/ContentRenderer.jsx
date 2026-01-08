@@ -9,15 +9,15 @@ function parseInline(text) {
   let i = 0;
 
   while (i < text.length) {
-      // 🔥 HANDLE NEW LINE
-  if (text[i] === "\n") {
-    tokens.push(<br key={`br-${i}`} />);
-    i++;
-    continue;
-  }
+    // 🔥 HANDLE NEW LINE
+    if (text[i] === "\n") {
+      tokens.push(<br key={`br-${i}`} />);
+      i++;
+      continue;
+    }
     // ***bold+italic***
-    if (text.startsWith('***', i)) {
-      const end = text.indexOf('***', i + 3);
+    if (text.startsWith("***", i)) {
+      const end = text.indexOf("***", i + 3);
       if (end !== -1) {
         tokens.push(
           <span key={i} className="font-bold italic text-text-primary">
@@ -28,11 +28,10 @@ function parseInline(text) {
         continue;
       }
     }
-    
 
     // **bold**
-    if (text.startsWith('**', i)) {
-      const end = text.indexOf('**', i + 2);
+    if (text.startsWith("**", i)) {
+      const end = text.indexOf("**", i + 2);
       if (end !== -1) {
         tokens.push(
           <strong key={i} className="text-text-primary">
@@ -45,8 +44,8 @@ function parseInline(text) {
     }
 
     // _italic_
-    if (text.startsWith('_', i)) {
-      const end = text.indexOf('_', i + 1);
+    if (text.startsWith("_", i)) {
+      const end = text.indexOf("_", i + 1);
       if (end !== -1) {
         tokens.push(
           <em key={i} className="text-text-primary italic">
@@ -59,8 +58,8 @@ function parseInline(text) {
     }
 
     // ~~strike~~
-    if (text.startsWith('~~', i)) {
-      const end = text.indexOf('~~', i + 2);
+    if (text.startsWith("~~", i)) {
+      const end = text.indexOf("~~", i + 2);
       if (end !== -1) {
         tokens.push(
           <span key={i} className="line-through text-red-500">
@@ -116,7 +115,6 @@ function parseInline(text) {
   return tokens;
 }
 
-
 function CodeBlock({ language, content }) {
   const [copied, setCopied] = useState(false);
 
@@ -129,8 +127,13 @@ function CodeBlock({ language, content }) {
   return (
     <div className="my-6 rounded-xl overflow-hidden border border-border bg-bg-surface shadow-md transition-colors">
       <div className="px-4 py-2 flex items-center justify-between bg-[#0b0e14]">
-        <span className="text-xs font-medium text-gray-300 uppercase">{language}</span>
-        <button onClick={copyToClipboard} className="text-gray-300 hover:text-white transition">
+        <span className="text-xs font-medium text-gray-300 uppercase">
+          {language}
+        </span>
+        <button
+          onClick={copyToClipboard}
+          className="text-gray-300 hover:text-white transition"
+        >
           {copied ? <FiCheck size={18} /> : <FiCopy size={18} />}
         </button>
       </div>
@@ -140,7 +143,6 @@ function CodeBlock({ language, content }) {
     </div>
   );
 }
-
 
 export default function ContentRenderer({ blocks = [], content = {} }) {
   const [modalImage, setModalImage] = useState(null);
@@ -154,7 +156,6 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
   }, []);
 
   const openImage = (img) => setModalImage(img);
-
 
   const renderBlock = (block, idx) => {
     // BADGE
@@ -172,16 +173,41 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
           className={`p-4 rounded-lg border shadow-sm my-6 ${color} 
             dark:bg-bg-surface dark:text-text-primary dark:border-border`}
         >
-          <div className="font-medium">{parseInline(block.title || "Note")}</div>
+          <div className="font-medium">
+            {parseInline(block.title || "Note")}
+          </div>
           <div className="text-sm mt-1">{parseInline(block.text)}</div>
         </div>
       );
     }
-        if (block.gap) {
+    if (block.gap) {
       return (
         <h2 key={idx} className=" my-14">
           {parseInline(block.gap)}
         </h2>
+      );
+    }
+    if (block.numberedList) {
+      return (
+        <ol key={idx} className="list-decimal ml-6 space-y-6 text-text-primary">
+          {block.numberedList.map((item, i) => (
+            <li key={i}>
+              {/* Title */}
+              <div className="font-semibold text-lg mb-2">
+                {parseInline(item.title)}
+              </div>
+
+              {/* Sub points */}
+              {item.points && (
+                <ul className="list-disc ml-6 space-y-2 text-text-secondary">
+                  {item.points.map((p, j) => (
+                    <li key={j}>{parseInline(p)}</li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ol>
       );
     }
 
@@ -202,7 +228,10 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
     }
     if (block.mediumHeading) {
       return (
-        <h2 key={idx} className="text-2xl font-bold mt-4 mb-1 text-text-primary">
+        <h2
+          key={idx}
+          className="text-2xl font-bold mt-4 mb-1 text-text-primary"
+        >
           {parseInline(block.mediumHeading)}
         </h2>
       );
@@ -210,57 +239,55 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
     // TEXT
     if (block.text) {
       return (
-        <p key={idx} className="text-lg leading-relaxed my-1  text-text-secondary">
+        <p
+          key={idx}
+          className="text-lg leading-relaxed my-1  text-text-secondary"
+        >
           {parseInline(block.text)}
         </p>
       );
     }
     // TABLE
-if (block.table) {
-  const { headers, rows } = block.table;
+    if (block.table) {
+      const { headers, rows } = block.table;
 
-  return (
-    <div key={idx} className="my-8 overflow-x-auto">
-      <table className="w-full border-collapse border border-border rounded-lg overflow-hidden">
-        <thead className="bg-bg-surface">
-          <tr>
-            {headers.map((h, i) => (
-              <th
-                key={i}
-                className="border border-border px-4 py-3 text-left text-text-primary font-semibold"
-              >
-                {parseInline(h)}
-              </th>
-            ))}
-          </tr>
-        </thead>
+      return (
+        <div key={idx} className="my-8 overflow-x-auto">
+          <table className="w-full border-collapse border border-border rounded-lg overflow-hidden">
+            <thead className="bg-bg-surface">
+              <tr>
+                {headers.map((h, i) => (
+                  <th
+                    key={i}
+                    className="border border-border px-4 py-3 text-left text-text-primary font-semibold"
+                  >
+                    {parseInline(h)}
+                  </th>
+                ))}
+              </tr>
+            </thead>
 
-        <tbody>
-          {rows.map((row, rIdx) => (
-            <tr key={rIdx} className="odd:bg-bg-main even:bg-bg-surface">
-              {row.map((cell, cIdx) => (
-                <td
-                  key={cIdx}
-                  className="border border-border px-4 py-3 text-text-secondary align-top"
-                >
-                  {parseInline(cell)}
-                </td>
+            <tbody>
+              {rows.map((row, rIdx) => (
+                <tr key={rIdx} className="odd:bg-bg-main even:bg-bg-surface">
+                  {row.map((cell, cIdx) => (
+                    <td
+                      key={cIdx}
+                      className="border border-border px-4 py-3 text-text-secondary align-top"
+                    >
+                      {parseInline(cell)}
+                    </td>
+                  ))}
+                </tr>
               ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-if (block.line) {
-  return (
-    <div
-      key={idx}
-      className="my-8 border-t border-2 border-border"
-    />
-  );
-} 
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+    if (block.line) {
+      return <div key={idx} className="my-8 border-t border-2 border-border" />;
+    }
 
     // IMAGE
     if (block.image) {
@@ -269,7 +296,11 @@ if (block.line) {
           key={idx}
           className="my-6 mb-8 overflow-hidden rounded-xl shadow-lg relative bg-bg-surface border border-border transition-colors"
         >
-          <img src={block.image.src} alt={block.image.alt} className="w-full h-auto" />
+          <img
+            src={block.image.src}
+            alt={block.image.alt}
+            className="w-full h-auto"
+          />
           <button
             onClick={() => openImage(block.image)}
             className="absolute right-3 bottom-3 bg-bg-surface border border-border text-text-primary rounded-md p-2 shadow hover:scale-105 transition"
@@ -283,22 +314,30 @@ if (block.line) {
     // LIST
     if (block.list) {
       return (
-        <ul key={idx} className="mb-4 space-y-2">
+        <ul key={idx} className="mb-4 space-y-2 list-disc ml-6">
           {block.list.map((item, i) => (
-            <li key={i} className="flex items-start space-x-3">
-              <svg
-                className="w-5 h-5 text-accent mt-1"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3-10l-4 4-2-2" />
-              </svg>
-              <span className="text-text-primary">{parseInline(item)}</span>
+            <li key={i} className="text-text-primary">
+              {parseInline(item)}
             </li>
           ))}
         </ul>
       );
     }
+// ORDERED LIST (1, 2, 3...)
+if (block.orderedList) {
+  return (
+    <ol
+      key={idx}
+      className="mb-4 space-y-2 ml-6 list-decimal"
+    >
+      {block.orderedList.map((item, i) => (
+        <li key={i} className="text-text-primary">
+          {parseInline(item)}
+        </li>
+      ))}
+    </ol>
+  );
+}
 
     // MULTIPLE CODE BLOCKS
     if (block.code) {
@@ -309,8 +348,6 @@ if (block.line) {
 
     return null;
   };
-
-
 
   return (
     <>
@@ -335,43 +372,40 @@ if (block.line) {
         {blocks.map(renderBlock)}
       </div>
 
+      {modalImage && (
+        <div
+          onClick={() => setModalImage(null)}
+          className="fixed inset-0 z-50 bg-black/80"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full h-[100svh] p-3"
+          >
+            {/* Close */}
+            <button
+              onClick={() => setModalImage(null)}
+              className="absolute top-3 right-3 z-20 bg-bg-surface border border-border text-text-primary rounded-full p-2 shadow"
+            >
+              <FiX />
+            </button>
 
-{modalImage && (
-  <div
-    onClick={() => setModalImage(null)}
-    className="fixed inset-0 z-50 bg-black/80"
-  >
-    <div
-      onClick={(e) => e.stopPropagation()}
-      className="relative w-full h-[100svh] p-3"
-    >
-      {/* Close */}
-      <button
-        onClick={() => setModalImage(null)}
-        className="absolute top-3 right-3 z-20 bg-bg-surface border border-border text-text-primary rounded-full p-2 shadow"
-      >
-        <FiX />
-      </button>
+            {/* IMAGE CONTAINER */}
+            <div className="w-full h-full overflow-auto flex items-center justify-center">
+              <img
+                src={modalImage.src}
+                alt={modalImage.alt}
+                className="max-h-full w-auto object-contain rounded-lg"
+              />
+            </div>
 
-      {/* IMAGE CONTAINER */}
-      <div className="w-full h-full overflow-auto flex items-center justify-center">
-        <img
-          src={modalImage.src}
-          alt={modalImage.alt}
-          className="max-h-full w-auto object-contain rounded-lg"
-        />
-      </div>
-
-      {modalImage.caption && (
-        <div className="text-center text-sm mt-2 text-gray-200">
-          {modalImage.caption}
+            {modalImage.caption && (
+              <div className="text-center text-sm mt-2 text-gray-200">
+                {modalImage.caption}
+              </div>
+            )}
+          </div>
         </div>
       )}
-    </div>
-  </div>
-)}
-
-
     </>
   );
 }

@@ -1,0 +1,346 @@
+
+{
+  "id": "data-sharding",
+  "heading": "Data Sharding",
+  "blocks": [
+    {
+      "text": "Data Sharding is a database technique in which large data is divided into smaller parts, called shards, and stored across multiple servers."
+    },
+    {
+      "text": "Each shard contains only a portion of the total data."
+    },
+    {
+      "smallHeading": "Simple definition"
+    },
+    {
+      "text": "Data sharding is the process of splitting a database into smaller, faster, and more manageable parts to improve performance and scalability."
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Why do we need Data Sharding?"
+    },
+    {
+      "text": "When data grows very large:"
+    },
+    {
+      "list": [
+        "One database becomes slow",
+        "Too many users access it at the same time",
+        "Server gets overloaded"
+      ]
+    },
+    {
+      "text": "**Problems without sharding:**"
+    },
+    {
+      "orderedList": [
+        "Slow queries",
+        "Limited scalability",
+        "High server load",
+        "Single point of failure"
+      ]
+    },
+    {
+      "text": "👉 Sharding solves these problems"
+    },
+        {
+      "image": {
+        "src": "/system-desgin/data-sharding.png",
+        "alt": "data-sharding ",
+        "caption": ""
+      }
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "How Data Sharding Works (Step-by-Step)"
+    },
+    {
+      "orderedList": [
+        "User sends a request",
+        "System checks the sharding key",
+        "Request is routed to the correct shard",
+        "Shard processes the request",
+        "Response is sent back to the user"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Shard and Sharding Key"
+    },
+    {
+      "smallHeading": "Shard"
+    },
+    {
+      "list": [
+        "A small part of the database",
+        "Stored on a separate server"
+      ]
+    },
+    {
+      "smallHeading": "Sharding Key"
+    },
+    {
+      "list": [
+        "A column used to decide where data is stored",
+        "Examples: User ID, Customer ID, Region"
+      ]
+    },
+    {
+      "text": "Choosing the correct sharding key is very important."
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Types of Data Sharding"
+    },
+    {
+      "smallHeading": "1. Horizontal Sharding (Most Common)"
+    },
+    {
+      "list": [
+        "Rows are divided across shards",
+        "Example: \nUsers 1–1000 → Shard \n Users 1001–2000→Shard 2"
+        
+      ]
+    },
+    {
+      "text": "✅ Best for large applications"
+    },
+    {
+      "smallHeading": "2. Vertical Sharding"
+    },
+    {
+      "list": [
+        "Columns are divided",
+        "Example: \n User profile → Shard 1\nUser activity → Shard 2"
+      ]
+    },
+    {
+      "smallHeading": "3. Directory-Based Sharding"
+    },
+    {
+      "list": [
+        "A lookup table decides shard location",
+        "Easy to manage but adds overhead"
+      ]
+    },
+    {
+      "smallHeading": "4. Hash-Based Sharding"
+    },
+    {
+      "list": [
+        "Hash function decides shard",
+        "Even data distribution",
+        "Hard to rebalance"
+      ]
+    },
+    {
+      "smallHeading": "5. Range-Based Sharding"
+    },
+    {
+      "list": [
+        "Data split by value range",
+        "Example: A–M, N–Z",
+        "Can cause uneven load"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Advantages of Data Sharding"
+    },
+    {
+      "orderedList": [
+        "Improved performance",
+        "High scalability",
+        "Reduced load on servers",
+        "Better fault isolation",
+        "Faster read and write operations"
+      ]
+    },
+    {
+      "mediumHeading": "Disadvantages of Data Sharding"
+    },
+    {
+      "orderedList": [
+        "Complex implementation",
+        "Difficult joins across shards",
+        "Data rebalancing is hard",
+        "Increased maintenance",
+        "Risk of uneven data distribution"
+      ]
+    },
+    {
+      "mediumHeading": "How to Overcome Disadvantages"
+    },
+    {
+      "orderedList": [
+        "Choose a good sharding key",
+        "Use consistent hashing",
+        "Automate shard management",
+        "Monitor shard performance",
+        "Use database tools that support sharding"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Real-Life Example"
+    },
+    {
+      "smallHeading": "Social Media App"
+    },
+    {
+      "list": [
+        "Millions of users",
+        "Users split by user ID",
+        "Each shard handles different users",
+        "Faster profile loading and posts"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Where Data Sharding is Used"
+    },
+    {
+      "list": [
+        "Facebook",
+        "Instagram",
+        "Amazon",
+        "Netflix",
+        "Online banking systems"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Simple Analogy"
+    },
+    {
+      "text": "📚 Library Example"
+    },
+    {
+      "list": [
+        "One big library → too crowded",
+        "Books divided into many rooms",
+        "Each room handles fewer people"
+      ]
+    },
+    {"text":"👉 Shards = Rooms\n👉 Database = Library"},
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Best Practices for Data Sharding"
+    },
+    {
+      "orderedList": [
+        "Avoid frequent shard rebalancing",
+        "Plan for future growth",
+        "Keep shard sizes balanced",
+        "Monitor query performance",
+        "Test sharding logic thoroughly"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Data Sharding in Modern Systems"
+    },
+    {
+      "list": [
+        "Used in microservices",
+        "Combined with load balancers",
+        "Often paired with caching",
+        "Supported by:MongoDB \n Cassandra \n MySQL (manual) \n  PostgreSQL (extensions)"
+      ]
+    },
+    {
+      "list": [
+        
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Sharding vs Partitioning"
+    },
+    {
+      "smallHeading": "1. Meaning"
+    },
+    {
+      "table": {
+        "headers": [
+          "Sharding",
+          "Partitioning"
+        ],
+        "rows": [
+          [
+            "Sharding is the process of dividing data across multiple databases or servers.\nEach shard is stored on a different machine.",
+            "Partitioning is the process of dividing data within a single database.\nAll partitions stay on the same server."
+          ]
+        ]
+      }
+    },
+    {
+      "smallHeading": "2. Purpose"
+    },
+    {
+      "table": {
+        "headers": [
+          "Sharding",
+          "Partitioning"
+        ],
+        "rows": [
+          [
+            "Used mainly for scalability\nHelps handle very large datasets and high traffic",
+            "Used mainly for performance and management\nMakes queries faster and data easier to manage"
+          ]
+        ]
+      }
+    },
+    {
+      "smallHeading": "Tabular Comparison"
+    },
+    {
+      "table": {
+        "headers": [
+          "Feature",
+          "Sharding",
+          "Partitioning"
+        ],
+        "rows": [
+          ["Data split", "Across servers", "Within one server"],
+          ["Main goal", "Scalability", "Performance & management"],
+          ["Scaling type", "Horizontal", "Vertical"],
+          ["Complexity", "High", "Low"],
+          ["Fault tolerance", "High", "Low"],
+          ["Best for", "Very large systems", "Medium systems"]
+        ]
+      }
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Conclusion"
+    },
+    {
+      "text": "Data sharding is a powerful technique for handling large-scale data. It improves performance, scalability, and reliability, but must be designed carefully."
+    }
+  ]
+}

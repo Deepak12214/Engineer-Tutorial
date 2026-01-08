@@ -1,0 +1,463 @@
+{
+  "id": "api-gateway",
+  "heading": "Api Gateway",
+  "blocks": [
+    {
+      "text": "An API Gateway is a single entry point that sits between clients (users/apps) and backend services (microservices)."
+    },
+    {
+      "text": "It receives all client requests, processes them, and then forwards them to the correct service."
+    },
+    {
+      "text": "**🔹 Simple definition**"
+    },
+    {
+      "text": "An API Gateway is a server that manages, secures, and routes API requests from clients to backend services."
+    },
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Why do we need an API Gateway?"
+    },
+    {
+      "text": "In modern applications:"
+    },
+    {
+      "list": [
+        "There are many microservices",
+        "Clients should not talk to each service directly"
+      ]
+    },
+    {
+      "smallHeading": "Problems without API Gateway:"
+    },
+    {
+      "orderedList": [
+        "Client must know many service URLs",
+        "No centralized security",
+        "No request monitoring",
+        "Difficult rate limiting",
+        "Hard to manage versioning"
+      ]
+    },
+    {
+      "text": "👉 API Gateway solves all these problems"
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "How does an API Gateway work? (Step-by-Step)"
+    },
+    {
+      "numberedList": [
+            {
+      "title": "Client sends a request (e.g., mobile app)",
+      "points": []
+    },
+                {
+      "title": "Request reaches API Gateway",
+      "points": []
+    },            {
+      "title": "Gateway checks:",
+      "points": ["Authentication",
+        "Authorization",
+        "Rate limits"]
+    },            {
+      "title": "Gateway routes request to correct microservice",
+      "points": []
+    },            {
+      "title": "Microservice sends response",
+      "points": []
+    },            {
+      "title": "API Gateway returns response to client",
+      "points": []
+    }
+  ]
+    },
+    {
+      "smallHeading": "🏫 School Gate Example"
+    },
+    {
+      "list": [
+        "Students enter through one main gate",
+        "Security checks happen at the gate",
+        "Students then go to classrooms"
+      ]
+    },
+    {
+      "text": "👉 API Gateway = School gate\n 👉 Microservices = Classrooms"
+    },
+    {
+      "image": {
+        "src": "/system-desgin/api-gateway.png",
+        "alt": "Api-Gateway ",
+        "caption": ""
+      }
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "API Gateway Architecture"
+    },
+    {
+      "text": "Components:"
+    },
+    {
+      "orderedList": [
+        "Client (Web, Mobile, IoT)",
+        "API Gateway",
+        "Microservices",
+        "Authentication Server",
+        "Monitoring System"
+      ]
+    },
+    {
+      "text": "📌 API Gateway sits in front of microservices"
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "Types of API Gateways"
+    },
+    {
+  "numberedList": [
+    {
+      "title": "Edge API Gateway",
+      "points": [
+        "Public-facing gateway exposed to the internet.",
+        "Handles all **external client traffic** coming into the system."
+      ]
+    },
+    {
+      "title": "Internal API Gateway",
+      "points": [
+        "Used **inside the organization**.",
+        "Manages **service-to-service communication** between internal microservices."
+      ]
+    },
+    {
+      "title": "Cloud-Managed API Gateway",
+      "points": [
+        "Fully managed by **cloud providers**.",
+        "Reduces operational overhead by handling scaling, security, and availability automatically."
+      ]
+    }
+  ]
+},
+    {
+      "smallHeading": "Popular API Gateway Tools"
+    },
+    {
+  "numberedList": [
+    {
+      "title": "Amazon API Gateway",
+      "points": [
+        "Fully managed API Gateway service.",
+        "Integrates seamlessly with **AWS services**."
+      ]
+    },
+    {
+      "title": "Kong API Gateway",
+      "points": [
+        "**Open-source** API Gateway.",
+        "Highly **scalable** and extensible."
+      ]
+    },
+    {
+      "title": "NGINX API Gateway",
+      "points": [
+        "Fast and **lightweight**.",
+        "Also works as a **reverse proxy**."
+      ]
+    },
+    {
+      "title": "Apigee (Google)",
+      "points": [
+        "**Enterprise-level** API management platform.",
+        "Provides **advanced analytics** and monitoring."
+      ]
+    },
+    {
+      "title": "Azure API Management",
+      "points": [
+        "Microsoft **cloud-based** API Gateway solution.",
+        "Used for managing, securing, and monitoring APIs."
+      ]
+    }
+  ]
+},
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "Advantages of API Gateway"
+    },
+    {
+      "orderedList": [
+        "Centralized control",
+        "Improved security",
+        "Simplified client interaction",
+        "Better performance with caching",
+        "Easy monitoring & analytics",
+        "Supports microservices architecture"
+      ]
+    },
+    {
+      "smallHeading": "Disadvantages of API Gateway"
+    },
+    {
+      "orderedList": [
+        "Single point of failure (if not designed well)",
+        "Adds latency",
+        "Complex configuration",
+        "Scaling challenges",
+        "Can become a bottleneck"
+      ]
+    },
+    {
+      "smallHeading": "How to overcome disadvantages"
+    },
+    {
+      "orderedList": [
+        "Use multiple API Gateway instances",
+        "Enable auto-scaling",
+        "Use caching",
+        "Implement fallback mechanisms",
+        "Monitor performance regularly"
+      ]
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "Real-Life Example"
+    },
+    {
+      "text": "**Food Delivery App**"
+    },
+        {
+  "numberedList": [
+    {
+      "title": "Mobile app sends request",
+      "points": [
+      ]
+    },
+    {
+      "title": "API Gateway:",
+      "points": [
+        "Authenticates user",
+        "Routes to restaurant service",
+        "Applies rate limits"
+      ]
+    },
+    {
+      "title": "Returns response to user",
+      "points": [
+      ]
+    }
+  ]
+},
+    {
+      "line": true
+    },
+    {
+      "mediumHeading": "Core Functions of an API Gateway"
+    },
+    {
+      "smallHeading": "1. Request Routing"
+    },
+    {
+      "text": "The API Gateway receives requests from clients and routes them to the correct backend service."
+    },
+    {
+      "text": "It decides which microservice should handle the request based on URL, headers, or HTTP method."
+    },
+    {
+      "text": "This removes the need for clients to know multiple service addresses."
+    },
+    {
+      "smallHeading": "2. Authentication"
+    },
+    {
+      "text": "Authentication ensures that the user is genuine."
+    },
+    {
+      "text": "The API Gateway verifies identity using:"
+    },
+    {
+      "list": [
+        "API keys",
+        "JWT tokens",
+        "OAuth tokens"
+      ]
+    },
+    {
+      "text": "If authentication fails, the request is rejected immediately."
+    },
+    {
+      "smallHeading": "3. Authorization"
+    },
+    {
+      "text": "Authorization checks what a user is allowed to do."
+    },
+    {
+      "text": "Even if a user is authenticated, they may not have permission to access certain APIs."
+    },
+    {
+      "text": "The API Gateway enforces these access rules centrally."
+    },
+    {
+      "smallHeading": "4. Rate Limiting"
+    },
+    {
+      "text": "Rate limiting controls how many requests a client can send in a given time."
+    },
+    {
+      "text": "This protects backend services from overload and prevents abuse like DDoS attacks."
+    },
+    {
+      "text": "Example: 100 requests per minute per user."
+    },
+    {
+      "smallHeading": "5. Load Balancing"
+    },
+    {
+      "text": "When multiple instances of a service exist, the API Gateway distributes traffic evenly."
+    },
+    {
+      "text": "This improves performance and ensures high availability."
+    },
+    {
+      "text": "If one instance fails, traffic is sent to another."
+    },
+    {
+      "smallHeading": "6. Request and Response Transformation"
+    },
+    {
+      "text": "The API Gateway can modify requests and responses."
+    },
+    {
+      "text": "It can:"
+    },
+    {
+      "list": [
+        "Change data formats (XML to JSON)",
+        "Add or remove headers",
+        "Modify request structure"
+      ]
+    },
+    {
+      "text": "This helps maintain compatibility between clients and services."
+    },
+    {
+      "smallHeading": "7. Caching"
+    },
+    {
+      "text": "The API Gateway stores frequently requested responses."
+    },
+    {
+      "text": "This reduces backend load and improves response speed."
+    },
+    {
+      "text": "Example: product details in an e-commerce app."
+    },
+    {
+      "smallHeading": "8. Monitoring and Logging"
+    },
+    {
+      "text": "The API Gateway tracks:"
+    },
+    {
+      "list": [
+        "Number of requests",
+        "Response times",
+        "Errors and failures"
+      ]
+    },
+    {
+      "text": "This helps developers monitor system health and debug problems easily."
+    },
+    {
+      "smallHeading": "9. Security Enforcement"
+    },
+    {
+      "text": "The API Gateway protects APIs using:"
+    },
+    {
+      "list": [
+        "HTTPS / SSL",
+        "IP whitelisting",
+        "Threat detection"
+      ]
+    },
+    {
+      "text": "It acts as a security shield in front of backend services."
+    },
+    {
+      "smallHeading": "10. API Version Management"
+    },
+    {
+      "text": "The API Gateway supports multiple API versions (v1, v2)."
+    },
+    {
+      "text": "This allows new features without breaking old clients."
+    },
+    {
+      "smallHeading": "11. Protocol Translation"
+    },
+    {
+      "text": "It allows clients and services to use different protocols."
+    },
+    {
+      "text": "Example: Client uses HTTP while backend uses gRPC."
+    },
+    {
+      "smallHeading": "12. Fault Tolerance and Circuit Breaking"
+    },
+    {
+      "text": "If a service is down, the API Gateway can:"
+    },
+    {
+      "list": [
+        "Return fallback responses",
+        "Stop sending traffic temporarily"
+      ]
+    },
+    {
+      "text": "This prevents system-wide failure."
+    },
+    {
+      "line": true
+    },
+    {
+      "smallHeading": "One-line Summary"
+    },
+    {
+      "text": "An API Gateway manages routing, security, performance, and monitoring of APIs in a microservices architecture."
+    },
+    {
+      "line": true
+    },
+    {
+      "heading": "Conclusion"
+    },
+    {
+      "text": "An API Gateway is a critical component in modern, microservice-based systems.\nIt provides:"
+    },
+    {
+      "list": [
+        "Security",
+        "Routing",
+        "Monitoring",
+        "Scalability"
+      ]
+    },
+    {
+      "text": "Without it, managing APIs becomes complex and risky."
+    }
+  ]
+}
