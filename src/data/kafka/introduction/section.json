@@ -1,0 +1,11 @@
+{
+  "id": "introduction",
+  "title": "Kafka Fundamentals",
+  "description": "Basics of event streaming and Apache Kafka concepts.",
+  "topics": [
+    {
+      "id": "event-streaming-fundamentals",
+      "title": "Event Streaming Fundamentals"
+    }
+  ]
+}

@@ -4,17 +4,22 @@
     "tagline": "Master System Design & Algorithms",
     "logo": "/logo.png",
     "headerLinks": [
-      {
-        "label": "Learn",
-        "type": "dropdown",
-        "items": [
-          {
-            "label": "System Design",
-            "courseId": "system-design",
-            "description": "Learn scalable system architecture"
-          }
-        ]
-      },
+{
+  "label": "Learn",
+  "type": "dropdown",
+  "items": [
+    {
+      "label": "System Design",
+      "courseId": "system-design",
+      "description": "Learn scalable system architecture"
+    },
+    {
+      "label": "Apache Kafka",
+      "courseId": "kafka",
+      "description": "Learn event streaming and real-time data pipelines"
+    }
+  ]
+},
       {
         "label": "Blogs",
         "type": "link",

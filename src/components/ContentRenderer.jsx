@@ -191,20 +191,43 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
       return (
         <ol key={idx} className="list-decimal ml-6 space-y-6 text-text-primary">
           {block.numberedList.map((item, i) => (
-            <li key={i}>
-              {/* Title */}
-              <div className="font-semibold text-lg mb-2">
-                {parseInline(item.title)}
-              </div>
+            <li key={i} className="space-y-3">
+              {/* Iterate over keys inside item */}
+              {Object.entries(item).map(([key, value], k) => {
+                // TITLE
+                if (key === "title") {
+                  return (
+                    <div key={k} className="font-semibold text-lg">
+                      {parseInline(value)}
+                    </div>
+                  );
+                }
 
-              {/* Sub points */}
-              {item.points && (
-                <ul className="list-disc ml-6 space-y-2 text-text-secondary">
-                  {item.points.map((p, j) => (
-                    <li key={j}>{parseInline(p)}</li>
-                  ))}
-                </ul>
-              )}
+                // ARRAY → BULLET POINTS
+                if (Array.isArray(value)) {
+                  return (
+                    <ul
+                      key={k}
+                      className="list-disc ml-6 pl-4 lg:pl-10 space-y-2 text-text-secondary"
+                    >
+                      {value.map((p, j) => (
+                        <li key={j}>{parseInline(p)}</li>
+                      ))}
+                    </ul>
+                  );
+                }
+
+                // STRING → NORMAL TEXT
+                if (typeof value === "string") {
+                  return (
+                    <p key={k} className="text-text-secondary leading-relaxed">
+                      {parseInline(value)}
+                    </p>
+                  );
+                }
+
+                return null;
+              })}
             </li>
           ))}
         </ol>
@@ -314,7 +337,7 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
     // LIST
     if (block.list) {
       return (
-        <ul key={idx} className="mb-4 space-y-2 list-disc ml-6">
+        <ul key={idx} className="mb-4 space-y-2 list-disc ml-6 pl-4 lg:pl-10">
           {block.list.map((item, i) => (
             <li key={i} className="text-text-primary">
               {parseInline(item)}
@@ -323,21 +346,18 @@ export default function ContentRenderer({ blocks = [], content = {} }) {
         </ul>
       );
     }
-// ORDERED LIST (1, 2, 3...)
-if (block.orderedList) {
-  return (
-    <ol
-      key={idx}
-      className="mb-4 space-y-2 ml-6 list-decimal"
-    >
-      {block.orderedList.map((item, i) => (
-        <li key={i} className="text-text-primary">
-          {parseInline(item)}
-        </li>
-      ))}
-    </ol>
-  );
-}
+    // ORDERED LIST (1, 2, 3...)
+    if (block.orderedList) {
+      return (
+        <ol key={idx} className="mb-4 space-y-2 ml-6 list-decimal">
+          {block.orderedList.map((item, i) => (
+            <li key={i} className="text-text-primary">
+              {parseInline(item)}
+            </li>
+          ))}
+        </ol>
+      );
+    }
 
     // MULTIPLE CODE BLOCKS
     if (block.code) {

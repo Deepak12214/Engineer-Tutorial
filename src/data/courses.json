@@ -8,6 +8,15 @@
       "defaultRoute": "/learn/system-design/introduction/01-what-is-system-design",
       "totalSections": 1,
       "totalTopics": 6
+    },
+    {
+      "id": "kafka",
+      "title": "Apache Kafka",
+      "description": "Learn event streaming, Kafka architecture, and real-time data pipelines",
+      "icon": "📊",
+      "defaultRoute": "/learn/kafka/introduction/01-event-streaming-fundamentals",
+      "totalSections": 1,
+      "totalTopics": 8
     }
   ]
 }

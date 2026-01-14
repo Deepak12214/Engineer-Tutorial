@@ -1,0 +1,234 @@
+{
+  "id": "event-streaming-fundamentals",
+  "heading": "Event Streaming Fundamentals",
+  "blocks": [
+    {
+      "mediumHeading": "Introduction"
+    },
+    {
+      "text": "Modern software systems are no longer built as monolithic applications that process data in batches at fixed intervals. Instead, they are increasingly event-driven, reacting to changes as they happen. Whether it’s a payment being completed, a user clicking a button, or a sensor reporting a temperature change, these actions generate events. Event streaming is the architectural paradigm that enables systems to capture, process, store, and react to these events in real time. It forms the backbone of many large-scale platforms such as Netflix, Uber, LinkedIn, and modern data platforms."
+    },
+    {
+      "line": true
+    },
+
+    {
+      "mediumHeading": "What is an Event?"
+    },
+    {
+      "text": "An event represents a **fact that something has happened** in the system. It is **immutable** and **time-ordered**."
+    },
+    {
+      "smallHeading": "Examples"
+    },
+    {
+      "list": [
+        "Order #1234 was placed",
+        "User logged in",
+        "Inventory quantity changed",
+        "Payment succeeded"
+      ]
+    },
+    {
+      "text": "Each event typically contains:"
+    },
+    {
+      "list": [
+        "Key – Identifies the entity (e.g., order_id, user_id)",
+        "Value (payload) – Event data",
+        "Timestamp – When the event occurred",
+        "Metadata – Headers, source, schema version, etc."
+      ]
+    },
+    {
+      "text": "Once produced, an event is **never modified** — only consumed."
+    },
+    {
+      "line": true
+    },
+
+    {
+      "mediumHeading": "What Is Event Streaming?"
+    },
+    {
+      "text": "Event streaming is the **continuous flow of events** from producers to consumers.\n In event streaming, events are:"
+    },
+    {
+      "orderedList": [
+        "Published as they occur",
+        "Stored durably",
+        "Consumed by multiple systems",
+        "Processed in real time or replayed later"
+      ]
+    },
+    {
+      "text": "Unlike traditional request-response systems, event streaming is **asynchronous, decoupled, and highly scalable**."
+    },
+    {
+      "line": true
+    },
+
+    {
+      "mediumHeading": "Core Components of an Event Streaming System"
+    },
+    {
+      "numberedList": [
+        {
+          "title": "Producers",
+          "text": "Producers generate events and publish them to the event streaming platform.\n Examples:   ",
+          "points": [
+            "Generate events and publish them to the event streaming platform.",
+            "Examples include backend services, mobile applications, IoT devices, and databases (CDC tools).",
+            "A producer does not know who will consume the event — only where to publish it."
+          ],
+          "text2": "A producer does not know who will consume the event—only where to publish it."
+        },
+        {
+          "title": "Topics (or Streams)",
+          "text": "A **topic** is a logical category or stream of events (e.g., orders, payments, user_activity).\n Key characteristics:",
+          "points": [
+            "Events are **append-only**.",
+            "Events are **ordered** (at least within a partition).",
+            "Topics can be **partitioned for scalability**."
+          ]
+        },
+        {
+          "title": "Partitions",
+          "text": "To handle high throughput, topics are split into partitions.",
+          "points": [
+            "Each partition is an **ordered log**.",
+            "Events with the same key go to the same partition.",
+            "Enables parallel consumption and horizontal scaling"
+          ],
+          "text2": "Ordering is guaranteed **within a partition**, not across the entire topic."
+        },
+        {
+          "title": "Event Broker",
+          "text": "The event broker is the core infrastructure that:",
+          "points": [
+            "Accepts events from producers.",
+            "Stores events **durably**.",
+            "Serves events to consumers."
+          ],
+          "text2": "Popular brokers :",
+          "points2": [
+            " Apache Kafka",
+            "Apache Pulsar",
+            "Amazon Kinesis",
+            "Azure Event Hubs"
+          ]
+        },
+        {
+          "title": "Consumers",
+          "text": "Consumers subscribe to topics and process events.\n Key concepts:",
+          "points": [
+            "Consumer groups allow **parallel processing**.",
+            "Each partition is consumed by only one consumer in a group.",
+            "Consumers track their position using **offsets**."
+          ],
+          "text2": "This enables:",
+          "points2": [
+            "Load balancing",
+            "Fault tolerance",
+            "Independent scaling"
+          ]
+        },
+        {
+          "title": "Offsets and Retention",
+          "points": [
+            "An offset represents the consumer’s position in a partition.",
+            "Consumers can pause, resume, or replay events.",
+            "Events are retained based on **time or size policies**.",
+            "This enables event replay and recovery."
+          ],
+          "text": "This makes event streaming suitable not just for messaging, but also for event replay and recovery."
+        }
+      ]
+    },
+    {
+      "line": true
+    },
+
+    {
+      "mediumHeading": "Common Event Streaming Patterns"
+    },
+    {
+      "numberedList": [
+        {
+          "title": "Publish–Subscribe",
+          "text": "Multiple consumers independently consume the same event stream."
+        },
+        {
+          "title": "Event Sourcing",
+          "text": "System state is rebuilt by replaying events instead of storing only the latest state."
+        },
+        {
+          "title": "CQRS (Command Query Responsibility Segregation)",
+          "text": "Commands write events; queries read from derived views built from event streams."
+        },
+        {
+          "title": "Stream Processing",
+          "text": "Events are transformed, aggregated, or joined in real time using tools like:",
+          "points": [
+            "Kafka Streams",
+            "Apache Flink",
+            "Spark Structured Streaming"
+          ]
+        }
+      ]
+    },
+
+    {
+      "line": true
+    },
+
+    {
+      "mediumHeading": "Guarantees and Delivery Semantics"
+    },
+    {
+      "text": "Event streaming systems typically support:"
+    },
+    {
+      "list": [
+        "At-most-once – Fast but may lose data",
+        "At-least-once – No data loss, possible duplicates",
+        "Exactly-once – Strongest guarantee, more complexity"
+      ]
+    },
+    {
+      "text": "Choosing the right guarantee depends on the **business requirement**."
+    },
+    {
+      "line": true
+    },
+
+    {
+      "mediumHeading": "Why Event Streaming Matters"
+    },
+    {
+      "list": [
+        "Real-time analytics",
+        "Reactive microservices",
+        "Loose coupling between systems",
+        "Scalable data pipelines",
+        "Auditability and replay"
+      ]
+    },
+    {
+      "text": "It shifts system design from **request-driven** to **event-driven**, making systems more resilient and extensible."
+    },
+    {
+      "line": true
+    },
+
+    {
+      "mediumHeading": "Conclusion"
+    },
+    {
+      "text": "Event streaming is a foundational concept in modern system design and data platforms. By modeling systems around immutable events and continuous streams, organizations can build architectures that are scalable, fault-tolerant, and real-time by design. Understanding event streaming fundamentals—events, topics, partitions, consumers, and delivery guarantees—is essential for any engineer working with distributed systems today."
+    },
+    {
+      "text": "In an event-driven world, **events are not just data — they are the system itself**."
+    }
+  ]
+}
